@@ -95,7 +95,7 @@
     | F | 1111 | 
 
 5. Binary-Decimal Conversion Chart (Decimal 0-255 )- 8 pages
-| Binary Number | Decimal | Number | Hex Number | 
+| Binary Number | Decimal Number | Hex Number | 
 |--------|--------|--------|
    | 0 | 0 | 0 |
    | 1 | 1 | 1 | 
