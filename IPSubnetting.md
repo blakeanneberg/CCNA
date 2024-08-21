@@ -37,6 +37,7 @@
     
 2. 9 Values found in DDN Mask Octet (Decimal, Binary)
    | Decimal Value | Binary | Number of Binary 1s |
+   | ----------| --------|--------|
    | 0 | 00000000 | 0 | 
    | 128 | 10000000 | 1 | 
    | 192 | 11000000 | 2 |
@@ -49,6 +50,7 @@
 
 3. Powers of 2 
     | Number | 2^Number | 
+    |--------|--------|
     | 0 | 1 | 
     | 1 | 2 | 
     | 2 | 4 |
@@ -74,6 +76,7 @@
 
 4. Binary-Hex conversion chart (Hex 0-F)
     | Hex | Binary | 
+    |----|-----|
     | 0 | 0000 |
     | 1 | 0001 |
     | 2 | 0010 |
@@ -93,6 +96,7 @@
 
 5. Binary-Decimal Conversion Chart (Decimal 0-255 )- 8 pages
 | Binary Number | Decimal | Number | Hex Number | 
+|-------------|--------|--------|--------|
    | 0 | 0 | 0 |
    | 1 | 1 | 1 | 
    | 10 | 2 | 2 |
