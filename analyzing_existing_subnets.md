@@ -5,31 +5,113 @@
 - Last Address: 10.1.1.254
 - Subnet Broadcast address: 10.1.1.225
 
-# Example Three Easy Masks
+-Example Three Easy Masks
 | Binary | Prefix | DDN |
 | 11111111 00000000 00000000 00000000 | /8 | 255.0.0.0 |
 | 11111111 11111111 00000000 00000000 | /16 | 255.255.0.0 |
 | 11111111 11111111 11111111 00000000 | /24 | 255.255.255.0 |
 
-Process: Calculating Subnet 
+# Process: Calculating Subnets 
 1. Write problem on paper: Mask above, Address below, column aligned. Leave space for Subnet ID, Subnet boradcast address, two more values
-2. For each column, if Mask = 255
+2. For each column, if Mask = 255 in firs three octects
 - Copy Address octets to Subnet ID
 - Copy addresses octets to Subnet broadcast address
 3. For each column, if Mask = 0
 - Write 0s in the subnet ID
 - Write 255s in subnet Broadcast Address
-4. To find the range of addressess
+4. If Mask is neither 0 nor 255:
+- Calculate Maig = 256 - Mask_Value
+- Subnet ID: Use nearest magic multiple (not greater than) 
+- Broadcast: use next magic multiple, minus 1
+5. To find the range of addressess
 - In 4th octet, Subnet ID: +1
- dd
 - In 4th Octet, Broadcast: -1
 
-example: 
+- Template: 
 1. __.__.__.__ MASK
 2. __.__.__.__ Subnet ID
 3. __.__.__.__ First Address
 4. __.__.__.__ Last Address
 5. __.__.__.__ Broadcast 
+
+- Template: 
+|---|---|---|---|---|
+| . | . | . |  | Mask |
+| . | . | . |  | Address |
+| . | . | . |  | first Address |
+| . | . | . |  | Last Address |
+| . | . | . |  | Subnet ID |
+| . | . | . |  | Broadcast |
+
+- Example: 
+|---|---|---|---|---|
+| 255. | 255. | 255. | 0 | Mask |
+| 172. | 16. | 55. | 56 | Address |
+| 172. | 16. | 55. | 0 | Subnet ID |
+| 172. | 16. | 55. | 1 | First Address |
+| 172. | 16. | 55. | 254 | Last Address |
+| 172. | 16. | 55. | 255 | Broadcast |
+
+- Example 10.200.100.200, 255.255.0.0
+|---|---|---|---|---|
+| 255. | 255. | 0. | 0 | Mask |
+| 10. | 200. | 100. | 200 | Address |
+| 10. | 200. | 0. | 1 | first Address |
+| 10. | 200. | 255. | 254 | Last Address |
+| 10. | 200. | 0. | 0 | Subnet ID |
+| 10. | 200. | 255. | 255 | Broadcast |
+
+
+- Example: 172.24.15.15, 255.255.255.0 : 
+|---|---|---|---|---|
+| 255. | 255. | 255. | 0 | Mask |
+| 172. | 24. | 15. | 15 | Address |
+| 172. | 24. | 15. | 0 | Subnet ID |
+| 172. | 24. | 15. | 1 | first Address |
+| 172. | 24. | 15. | 254 | Last Address |
+| 172. | 24. | 15. | 255 | Broadcast |
+
+- Example: 
+Add: 128.1.101.200
+Mask: 255.255.255.0
+Subnet ID: 128.1.101.0 
+First Usable: 128.1.101.1 
+Last Usable: 128.1.101.254 
+Subnet Broadcast Address: 128.1.101.255
+
+- Example: 
+Add: 9.19.29.39 
+Mask: 255.255.255.0
+Subnet ID: 9.19.29.0 
+First Usable: 9.19.29.1 
+Last Usable: 9.19.29.254 
+Subnet Broadcast Address: 9.19.29.255
+
+- Example: 
+Add: 10.101.151.1 
+Mask: 255.255.255.0 
+Subnet ID: 10.101.151.0
+First Usable: 10.101.151.1
+Last Usable: 10.101.151.254
+Subnet Broadcast Address: 10.101.151.255
+
+- Example: 
+Add: 11.21.31.41 
+Mask: 255.255.0.0 
+Subnet ID: 11.21.0.0 
+First Usable: 11.21.0.1
+Last Usable: 11.21.255.254 
+Subnet Broadcast Address: 11.21.255.255
+
+## Finding subnet facts difficult masks
+- Example: 
+Add: 10.1.7.3 
+Mask: 255.255.254.0 
+Subnet ID: 10.1.6.0 
+First Usable:10.1.6.1 
+Last Usable:10.1.7.254 
+Subnet Broadcast Address: 10.1.7.255
+
 
 
 

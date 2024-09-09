@@ -6,6 +6,14 @@
     3. Addresses on one subnet shoud not be seperated by a router
 
 ## Subnet facts
+- Template: 
+|---|---|---|---|---|
+| . | . | . |  | Mask |
+| . | . | . |  | Address |
+| . | . | . |  | first Address |
+| . | . | . |  | Last Address |
+| . | . | . |  | Subnet ID |
+| . | . | . |  | Broadcast |
 - Subnet ID: lowest number in the subnet, in binary all host bits are zero
 - Address Range: nunbers in between
 - Subnet Broadcast Address: highest number in the subnet, in binary all host bits are ones
@@ -29,5 +37,23 @@
     | 11111111 11111111 11111111 | 111000 |
     | P = 27 | H = 5 | 
     2^5 = 32
+    ex: 10.1.7.3, 255.255.255.0
+    |---|---|---|---|---|
+    | 255. | 255. | 255. | 0 | Mask |
+    | 10. | 1. | 7. | 3 | Address |
+    | 10. | 1. | 7. |  | first Address |
+    | . | . | . |  | Last Address |
+    | . | . | . |  | Subnet ID |
+    | 10. | 1. | 7. |  | Broadcast |
+
+    ### Template: 
+    |---|---|---|---|---|
+    | . | . | . |  | Mask |
+    | . | . | . |  | Address |
+    | . | . | . |  | first Address |
+    | . | . | . |  | Last Address |
+    | . | . | . |  | Subnet ID |
+    | . | . | . |  | Broadcast |
+
 
 
