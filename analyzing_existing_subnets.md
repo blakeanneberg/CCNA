@@ -21,11 +21,11 @@
 - Write 255s in subnet Broadcast Address
 4. If Mask is neither 0 nor 255:
 - Calculate Maig = 256 - Mask_Value
-- Subnet ID: Use nearest magic multiple (not greater than) 
+- Subnet ID: Use nearest magic MULTIPLE (not greater than) 
 - Broadcast: use next magic multiple, minus 1
 5. To find the range of addressess
-- In 4th octet, Subnet ID: +1
-- In 4th Octet, Broadcast: -1
+- In 4th octet, Subnet ID and add 1
+- In 4th Octet, Broadcast and subtract 1
 
 - Template: 
 1. __.__.__.__ MASK
@@ -111,6 +111,24 @@ Subnet ID: 10.1.6.0
 First Usable:10.1.6.1 
 Last Usable:10.1.7.254 
 Subnet Broadcast Address: 10.1.7.255
+
+- Example: 
+Add: 172.16.55.56 
+Mask: 255.255.240.0 
+Subnet ID: 172.16.48.0
+First Usable: 172.16.48.1
+Last Usable: 172.16.255.254
+Subnet Broadcast Address: 172.16.63.255
+
+- Example
+ADD: 10.200.100.100
+MASK: 255.255.255.192
+SubnetID: 10.200.100.64
+First: 10.200.100.65
+Last: 10.200.100.126
+Broadcast ADD:  10.200.100.127
+
+
 
 
 
