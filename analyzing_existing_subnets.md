@@ -166,7 +166,25 @@ ADD: 10.39.224.119
 SubnetID: 10.32.0.0
 First: 10.32.0.1 
 Last: 10.64.255.254
-Broadcast ADD: 10.63.255.255 
+Broadcast ADD: 10.64.255.255 
+
+
+- Example: 32
+MASK: 255.255.224.0
+ADD:  172.25.177.143
+SubnetID: 172.25.160.0
+First: 172.25.160.1
+Last: 172.25.191.254
+Broadcast ADD: 172.25.191.255
+
+- Example: 16 
+MASK: 255.255.240.0
+ADD: 172.19.32.1
+SubnetID: 172.19.32.0
+First: 172.19.32.1
+Last:  172.19.32.254
+Broadcast ADD: 172.19.32.255
+
 
 
 
