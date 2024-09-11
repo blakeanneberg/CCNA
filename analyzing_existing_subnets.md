@@ -13,7 +13,7 @@
 
 # Process: Calculating Subnets 
 1. Write problem on paper: Mask above, Address below, column aligned. Leave space for Subnet ID, Subnet boradcast address, two more values
-2. For each column, if Mask = 255 in firs three octects
+2. For each column, if Mask = 255 in first three octects
 - Copy Address octets to Subnet ID
 - Copy addresses octets to Subnet broadcast address
 3. For each column, if Mask = 0
@@ -184,6 +184,60 @@ SubnetID: 172.19.32.0
 First: 172.19.32.1
 Last:  172.19.32.254
 Broadcast ADD: 172.19.32.255
+
+- Example: 8
+MASK: 255.255.248.0
+ADD: 172.21.95.114
+SubnetID: 172.21.88.0
+First: 172.21.88.1
+Last:  172.21.95.224
+Broadcast ADD: 172.21.95.255
+
+- Example: 
+MASK:  255.255.192.0
+ADD: 172.28.234.210
+SubnetID: 172.28.192.0
+First: 172.28.192.1 
+Last: 172.28.256.254
+Broadcast ADD: 172.28.256.255
+
+
+- Example: 
+MASK: 255.255.255.128
+ADD: 192.168.45.201
+SubnetID: 192.168.45.128
+First: 129.168.45.129
+Last:  129.168.45.254
+Broadcast ADD: 192.168.45.255
+
+- Example: 
+MASK: 255.255.255.224
+ADD: 192.168.114.18
+SubnetID: 192.168.114.0
+First: 192.168.114.1
+Last: 192.168.114.30
+Broadcast ADD: 192.168.114.31
+
+- Example: 
+MASK: 255.255.255.248
+ADD: 192.168.201.45
+SubnetID: 192.168.201.40
+First: 192.168.201.41
+Last: 192.168.201.46
+Broadcast ADD: 192.168.201.47
+
+- Example: 
+MASK:  255.255.255.252
+ADD: 192.168.14.17
+SubnetID: 192.168.14.16
+First: 192.168.14.17
+Last: 192.168.14.19
+Broadcast ADD: 192.168.14.20
+
+
+
+
+
 
 
 
