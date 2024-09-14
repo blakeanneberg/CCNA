@@ -64,17 +64,31 @@
 - Ethernet WAN
 
 # Options for enterprise IPv4 Addresses
+
 1. Public network
 - Private
 - NAT
 - CIDR
+
 2. Private networks
 - Within orgs
-- + NAT: clients can communicate to internet
+   1. + NAT: clients can communicate to internet
+   2. Private network 10 is the reserved 
+   3. A router with NAT will change a internal packet's source IP like 10.1.1.1 to another IP for outside the enterprise netowrk and on the wider world wide web IP like 200.1.1.1 
+- Class of Private networks
+| Class of Networks  | Private IP networks         | Number of networks |
+|--------------------|-----------------------------|--------------------|
+| A                  | 10.0.0.0                    | 1                  |
+| B                  | 172.16.0.0-171.31.0.0       | 16                 |
+| C                  | 192.168.0.0-192.168.255.0   | 256                | 
+
 3. Classless Interdomain Routing (CIDR) block
 - Public address block
 - Sizes are any 2^H, so less waste
 - Normally relies on also using Private Network and NAT
+- Assign public addresses using any mask
+- Allocates only the smallest block to meet need, saving addresses 
+- example IP 192.0.2.0/29 means you get IP addresses from 192.0.2.0 to 192.0.2.7
 
 
 
