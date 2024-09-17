@@ -41,12 +41,65 @@
 ## Making list of subnets
 1. Start with zero subnet (which equals the network ID) 
 2. Create the next subnet ID, based on previous subnet ID
-- Network part: Copy previous
-- Subnet part: Add magic
-- Host part: copy previous
-3. Stop with the broadcast subn
+- Network part: What class of network is it (A,B or C)? Copy down.
+   - Class A: 8
+   - Class B: 16
+   - Class C: 24
+- Host part: Find the part that only has 0s, so H = 8. Copy Down 
+- Subnet part: Subtrack 256 minus Subnet mask number to get the magic number, then add that new number individually to get Subnet count numbers. 
+- Network ID is the Zero Subnet.
+3. Stop with the broadcast subnet is the last number before 256.
+- IF the next subnet ID has a 256, STOP!
+- Previous subnet is th elast subnet (and alos the broadcast subnet). 
 
 ### Examples
-- 172.16.0.0 mask 255.255.255.0
+1. 172.16.0.0 mask 255.255.255.0
 
+### List all subnets
+1. Network 172.21.0.0 Mask 255.255.255.0
+- 1st subnet: 172.21.0.0
+- 2nd subnet: 172.21.1.0
+- 3rd subnet: 172.21.2.0
+- 4th from end of list: 172.21.252.0
+- 3rd from end of list: 172.21.253.0
+- 2nd from end of list: 172.21.254.0
+- Last Broadcast subnet: 172.21.255.0
 
+2. Network 172.22.0.0 Mask 255.255.0.0 o
+- 1st subnet: 172.22.0.0
+- 2nd subnet: 172.22.1.0
+- 3rd subnet: 172.22.2.0
+- 4th from end of list: 172.22.252.0
+- 3rd from end of list: 172.22.253.0
+- 2nd from end of list: 172.22.254.0
+- Last Broadcast subnet: 172.22.255.0
+
+3. Network 172.23.0.0 Mask 255.255.255.0 o
+- 1st subnet: 172.23.0.0
+- 2nd subnet: 172.23.1.0
+- 3rd subnet: 172.23.2.0
+- 4th from end of list: 172.23.252.0
+- 3rd from end of list: 172.23.253.0
+- 2nd from end of list: 172.23.254.0
+- Last Broadcast subnet: 172.23.255.0
+
+4. Network 172.24.0.0 Mask 255.255.255.0 o
+- 1st subnet: 172.24.0.0
+- 2nd subnet: 172.24.1.0
+- 3rd subnet: 172.24.2.0
+- 4th from end of list: 172.24.252.0
+- 3rd from end of list: 172.24.253.0
+- 2nd from end of list: 172.24.254.0
+- Last Broadcast subnet: 172.24.255.0
+
+5. Network 16.0.0.0 Mask 255.255.0.0
+- 1st subnet: 16.0.0.0
+- 2nd subnet: 16.1.0.0 
+- 3rd subnet: 16.2.0.0  
+- 4th from end of list: 16.252.0.0 
+- 3rd from end of list: 16.253.0.0 
+- 2nd from end of list: 16.254.0.0 
+- Last Broadcast subnet: 16.255.0.0 
+
+6. 
+ ENDED ON LESSON 17, 17.3 VIDEO
