@@ -102,4 +102,6 @@
 - Last Broadcast subnet: 16.255.0.0 
 
 6. 
- ENDED ON LESSON 17, 17.3 VIDEO
+
+
+Ended lesson 18, video 18.1
