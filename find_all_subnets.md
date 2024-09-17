@@ -49,8 +49,62 @@
 - Subnet part: Subtrack 256 minus Subnet mask number to get the magic number, then add that new number individually to get Subnet count numbers. 
 - Network ID is the Zero Subnet.
 3. Stop with the broadcast subnet is the last number before 256.
-- IF the next subnet ID has a 256, STOP!
-- Previous subnet is th elast subnet (and alos the broadcast subnet). 
+- IF the next subnet ID has a 256, 
+
+
+## Finding ALL subnets
+1. Set up the problem
+- Write the mask first, followed by Network ID
+- Leave space for more Subnet IDs below
+2. Identify and Proess Network (Only) octets
+- Apply Class A, B or C, rules to determin 1, 2, or 3 Network Octets
+- Copy Network ID to ALL subnet IDs for all network octets
+3. Identify and process host (only) octets
+- Octets with DDN mask octet = 0 are host only octets
+- Copy network ID to subnet IDs for all host octets
+- (Also... Host octet values of subnet IDs will be 0)
+4. Process the cotets w/ subnet bits
+- Details to be determined
+
+### >1 subnet octets
+| Network Octet   | all subnet octet | partial subnet octet | host octet      | 
+| copy down       |                 |                       |     copy down
+| Copy NetworkID  | 0..255, by 1s   | Add magic, up to 256  | copy down the 0 | 
+
+## Two subnet octets, class A 
+1. create the first block of subnet IDs 
+- first subnet ID: same number as network ID
+- Create first block by changing rightmost subnet octet:
+-- calcuclate magic number for that octet
+-- find multiples of the magic number from 0 though 255
+2. because two subnet octets exist
+- create 256 blocks like the first block
+- one block for each value 0..255 in the subnet octet on the left
+### 2 subnet octets
+| Network Octet   | all subnet octet | partial subnet octet | host octet      | 
+| copy down       |                 |                       |     copy down
+| Copy NetworkID  | =0 for a block, =1 for a block though 255 | multiples for magic number | copy down the 0 | 
+
+## Two subnet octets, class B 
+1. create the first block of subnet IDs 
+- first subnet ID: same number as network ID
+- Create first block by changing rightmost subnet octet:
+-- calcuclate magic number for that octet
+-- find multiples of the magic number from 0 though 255
+2. because two subnet octets exist
+- create 256 blocks like the first block
+- one block for each value 0..255 in the subnet octet on the left
+### 2 subnet octets, class B 
+| Network Octet   | Network Ocetet  | all subnet octet | partial host octet    | 
+| copy down       | copy down       |                    |                       |
+| Copy NetworkID  | Copy NetworkID   |  =0 for a block, =1 for a block though 255 |  multiples for magic number |
+
+
+ENDED HERE video 18.4
+
+
+
+
 
 ### Examples
 1. 172.16.0.0 mask 255.255.255.0
@@ -102,6 +156,6 @@
 - Last Broadcast subnet: 16.255.0.0 
 
 6. 
+Ended lesson 18, video 18.3
 
 
-Ended lesson 18, video 18.1
