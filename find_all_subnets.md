@@ -100,14 +100,21 @@
 | Copy NetworkID  | Copy NetworkID   |  =0 for a block, =1 for a block though 255 |  multiples for magic number |
 
 
-ENDED HERE video 18.4
 
-
-
+*** ENDED HERE VIDEO 19.4 IN lESSION 19 
 
 
 ### Examples
-1. 172.16.0.0 mask 255.255.255.0
+1. Network: 10.0.0.0 Mask: 255.255.240.0 
+- 10.0.0.0
+- 10.0.0.1
+- 10.0.16.0
+- 10.0.32.0
+....
+- 10.255.192.0
+- 10.255.208.0
+- 10.255.224.0
+- 10.255.240.0
 
 ### List all subnets
 1. Network 172.21.0.0 Mask 255.255.255.0
