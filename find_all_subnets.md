@@ -58,6 +58,12 @@
 - Leave space for more Subnet IDs below
 2. Identify and Proess Network (Only) octets
 - Apply Class A, B or C, rules to determin 1, 2, or 3 Network Octets
+- A: 1-126 
+- B: 128-191
+- C: 192-223
+- D: 224-239
+- E: 240-255
+
 - Copy Network ID to ALL subnet IDs for all network octets
 3. Identify and process host (only) octets
 - Octets with DDN mask octet = 0 are host only octets
@@ -100,9 +106,24 @@
 | Copy NetworkID  | Copy NetworkID   |  =0 for a block, =1 for a block though 255 |  multiples for magic number |
 
 
+###
+Network: 172.28.0.0
+Mask: 255.255.255.252
+172.28.0.4
+172.28.0.8
+172.28.255.248
+172.28.255.252
 
-*** ENDED HERE VIDEO 19.4 IN lESSION 19 
+### 
 
+Network: 10.0.0.0
+Mask: 255.255.255.240
+
+10.0.0.0
+10.0.0.16
+10.0.0.32
+10.255.255.224
+10.255.255.240
 
 ### Examples
 1. Network: 10.0.0.0 Mask: 255.255.240.0 
@@ -163,6 +184,6 @@
 - Last Broadcast subnet: 16.255.0.0 
 
 6. 
-Ended lesson 18, video 18.3
+Ended lesson 20 video 10.1 
 
 
