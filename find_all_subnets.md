@@ -106,6 +106,44 @@
 | Copy NetworkID  | Copy NetworkID   |  =0 for a block, =1 for a block though 255 |  multiples for magic number |
 
 
+## Find the number of host addresses
+1. Write the mask in prefix format /p convert as needed
+2. Find H: The number of host bits
+- H = 32 - P
+3. Find the size of the subnet
+- 2^H: the size including reserved numbers
+- 2^H - 2: the size including reserved numbers, usable addresses in subnet.
+
+## Find the number of subnets
+1. Write two key input facts:
+- Mask in prefix format /P convert as needed
+- The network class A, B or C
+2. Find number of network, subnet and host bits
+- H = 32 - P
+- N = 8, 16, or 24 based on Class A, B and C respectivly 
+- S = P - N, or S = 32 - N - H
+   - Class A: 8
+   - Class B: 16
+   - Class C: 24
+3. Find the number of subnets
+- 2^S: the number of subnets
+
+
+
+### Example
+
+- /19
+1. /P = /19
+2. H = 32 - 19 = 13
+3. 2^13 = 8192 and 2^13 - 2 = 8190
+
+- /25
+1. /P = /25
+2. H = 32 - 25 = 7
+3. 2^7 = 128 and 2^7 - 2 = 126
+
+
+
 ###
 Network: 172.28.0.0
 Mask: 255.255.255.252
