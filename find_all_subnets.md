@@ -121,7 +121,7 @@
 2. Find number of network, subnet and host bits
 - H = 32 - P
 - N = 8, 16, or 24 based on Class A, B and C respectivly 
-- S = P - N, or S = 32 - N - H
+- S = P - N, or S = 32 - N
    - Class A: 8
    - Class B: 16
    - Class C: 24
@@ -130,19 +130,63 @@
 
 
 
+
 ### Example
+
+| Network Subnet Host |
+
+
+- Class C, /26
+1. /P = /26
+2. 
+   H = 32 -26 = 6
+   N = 24
+   S = 30 - 24 = 6
+3. 2^6 = 64
+
+- Class C, /30 
+1. /P = /30 
+2. 
+   H = 32 - 30 = 2
+   N = 24
+   S = 30 - 24 = 6 
+3. 2^6 = 64
+
+- Class B, /30
+1. /P = /30
+2. 
+   H = 32 - 30 = 2
+   N: 16
+   S: 30 - 16 = 14 
+3. 2^14: 16384
+
 
 - /19
 1. /P = /19
 2. H = 32 - 19 = 13
-3. 2^13 = 8192 and 2^13 - 2 = 8190
+   N = 8
+   S = 19 - 8 = 11
+
+- Class B /21 
+1. /21
+2. H = 32 - 21 = 11
+   N = 16
+   S = 21 - 16 = 5
+   N = 16 S = 5 H = 11
+   2^5 = 32
+
+- Class A /21
+1. /21
+2. H = 32 - 21  = 11 
+   N = 8 
+   S = 21 - 8 = 13 
+3. 2^13 = 8192exorcizes
+
 
 - /25
 1. /P = /25
 2. H = 32 - 25 = 7
 3. 2^7 = 128 and 2^7 - 2 = 126
-
-
 
 ###
 Network: 172.28.0.0
