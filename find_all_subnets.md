@@ -128,9 +128,25 @@
 3. Find the number of subnets
 - 2^S: the number of subnets
 
+## Interpret existing masks
+
+- Reference: 2^H and 2^H - 2
+
+1. EX: 
+   - Network: 1.0.0.0
+   - Mask: 255.255.192.0
+   - Class A, /18 
+      - /P = /18
+      - H = 32 - 18 = 14
+      - N = 8
+      - S = 18 - 8 = 10
+   - #Host/Subnet: 2^14 - 2 = 16382
+   - #Subnets: 2^10 = 1024
 
 
-STOPPED AT LESSION 21.1 
+ENDED on video 21.2 QA 1
+
+
 
 ### Example
 
