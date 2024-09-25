@@ -122,9 +122,9 @@
 - H = 32 - P
 - N = 8, 16, or 24 based on Class A, B and C respectivly 
 - S = P - N, or S = 32 - N
-   - Class A: 8
-   - Class B: 16
-   - Class C: 24
+   - Class A: 8 network bits
+   - Class B: 16 network bits
+   - Class C: 24 network bits
 3. Find the number of subnets
 - 2^S: the number of subnets
 
@@ -140,11 +140,21 @@
       - H = 32 - 18 = 14
       - N = 8
       - S = 18 - 8 = 10
-   - #Host/Subnet: 2^14 - 2 = 16382
+   - #Host in Subnet: 2^14 - 2 = 16382
    - #Subnets: 2^10 = 1024
+2. EX: 
+   - Network 172.22.0.0
+   - Mask: 255.255.192.0
+   - Clase B, /18
+      - /P = /18
+      - H = 32 - 18 = 14
+      - N = 16
+      - S = 18 - 16 = 2 
+   - #Hosts in Subnet: 2^14 - 2: 16,382 
+   - #Subnets: 2^2: 4
 
 
-ENDED on video 21.2 QA 1
+ENDED on video 22.3 
 
 
 
