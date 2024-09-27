@@ -126,11 +126,68 @@
    - Class B: 16 network bits
    - Class C: 24 network bits
 3. Find the number of subnets
+- Reference: 2^H - 2 Hosts on subnets
 - 2^S: the number of subnets
 
 ## Interpret existing masks
 
-- Reference: 2^H and 2^H - 2
+
+
+
+0. EX: 
+   - Network: 192.168.8.0
+   - Mask: 255.255.255.248 
+   - Class: C Mask 29 
+      - /p /29 
+      - H = 32 - 29 = 3
+      - N = 24 
+      - S = 29 - 24 = 5
+      - Hosts on Subnets: 2^3 - 2 = 6
+      - Subnets: 2^5 = 32 
+
+0. EX: 
+   - Network: 172.27.0.0 
+   - Mask: 255.255.255.248 
+   - Class: B /29 
+      - /p /29 
+      - H = 32 - 29 = 3
+      - N = 16 
+      - S = 29 - 16 =  13
+      - Hosts on Subnets: 2^ 3 - 2 = 6
+      - Subnets: 2^13 = 8192
+
+0. EX: 
+   - Network: 6.0.0.0 
+   - Mask: 255.255.255.248 
+   - Class: A: /29 
+      - /p /29
+      - H = 32 - 29 = 3
+      - N = 8  
+      - S = 29 - 8 = 21  
+      - Hosts on Subnets: 2^3 = 6 
+      - Subnets: 2^21 = 2097152
+
+0. EX: 
+   - Network: 192.168.5.0 
+   - Mask: 255.255.255.224
+   - Class: C:27 
+      - /p /27
+      - H = 32 - 27 = 5
+      - N = 24 
+      - S = 27 - 24 = 3 
+      - Subnets:2^5 - 2 = 30
+      - Hosts: 2^3 = 8
+
+0. EX: 
+   - Network: 172.24.0.0
+   - Mask: 255.255.255.224
+   - Class B, /27
+      - /p /27
+      - H = 32 - 27 = 5 
+      - N = 16
+      - S = 27 - 16 = 11
+      - Subnets: 2^11 = 2048
+      - Hosts: 2^5 = 32
 
 0. EX: 
    - Network: 3.0.0.0
@@ -140,10 +197,7 @@
       - H = 32 - 27  = 5 
       - N = 8 
       - S = 27 - 8 = 19 
-
-
-
-1. EX: 
+0. EX: 
    - Network: 1.0.0.0
    - Mask: 255.255.192.0
    - Class A, /18 
@@ -153,7 +207,7 @@
       - S = 18 - 8 = 10
    - #Host in Subnet: 2^14 - 2 = 16382
    - #Subnets: 2^10 = 1024
-2. EX: 
+0. EX: 
    - Network 172.22.0.0
    - Mask: 255.255.192.0
    - Clase B, /18
