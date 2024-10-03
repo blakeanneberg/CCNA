@@ -41,10 +41,16 @@ ended on lession 22 videio 22.2
       - Maximize # hosts/subnets: P = N + S min
       - Maximize # subnets: P = 32 - H min
 | Power  | Decimal   |
+
+| 2^2    | 4 |
+| 2^3    | 8 |
+| 2^4    | 16  |
+| 2^5    | 32  |
 | 2^6    | 64  |
 | 2^7    | 128 |
 | 2^8    | 256 |
 | 2^9    | 512 |
+| 2^10    | 1000 |
 
 - Example 1 
    - Network: 172.32.0.0 , # subnets required = 300 , # hosts required = 100
@@ -76,6 +82,54 @@ ended on lession 22 videio 22.2
    3. H min = 5
    4. Total = 24 + 4 + 5 = 33 
       - Allowed masks: no masks as 33 is bigger than 32 
+- Example 5
+   - Network: 172.21.0.0 , # subnets required = 123 , # number of hosts required 98 
+   1. N = 16 (class B)
+   2. S min = 7
+   3. H min = 7
+   4. Total = 16 + 7 + 7 = 30 
+      - Shortest mask: P = N + S min = /23
+      - Longest mask: P = 32 - H min = /25
+      - Allowed masks: /23 to /25
+- Example 6
+   - Network: 172.22.0.0 , # subnets required = 100 , # number of hosts required 300 
+   1. N = 16 (class B)
+   2. S min = 7
+   3. H min = 9
+   4. Total = 16 + 7 + 9 = 32 
+      - Shortest mask: P = N + S min = /23
+      - Longest mask: P = 32 - H min = /23
+      - Allowed masks: /23 
+- Example 7
+   - Network: 192.168.23.0 , # subnets required = 75 , # number of hosts required 2 
+   1. N = 24 (class C)
+   2. S min = 7 
+   3. H min = 2 
+   4. Total = 24 + 7 + 2 = 33 which is illeglal mask
+
+- Example 8
+   - Network: 172.24.0.0 , # subnets required = 1000 , # number of hosts required 2 
+   1. N = 16 (class b)
+   2. S min = 10 
+   3. H min = 2 
+   4. Total = 16 + 10 + 2 = 27
+      - Shortest mask: P = N + S min = /26
+      - Longest mask: P = 32 - H min = /30
+      - Allowed masks: /26 to /30  
+- Example 9 
+   - Network: 192.168.25.0 , # subnets required = 25 , # number of hosts required5  
+   1. N = 24 (class C)
+   2. S min = 5 
+   3. H min = 3 
+   4. Total = 24 + 5 + 3 = 32 
+      - Shortest mask: P = N + S min = /29
+      - Longest mask: P = 32 - H min = /29
+      - Allowed masks: /29 
+
+
+
+
+
 
 
 
