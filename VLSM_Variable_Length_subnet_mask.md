@@ -43,3 +43,7 @@
 2. H = 32 - 24 = 8
 3. 2^8 = 256
    2^8 - 2 = 254
+
+
+STOPPED AT VIDEO 24.3 IN MODULE 7
+
