@@ -22,7 +22,13 @@
    3 class B networks required! 
 - Usually see a /30 for WAN link and a couple different sizes for LAN implementations
 - Conserve IP addresses, due to being department.
+- VLSM: > 1 mask used within a network
+   1. Cannot answer: how many subnets in the network?
+   2. Cannot answer: how many hosts in in every subnet?
+   3. CAN answer: how many hosts in a specific subnet? 
 
+
+STOPPED AT VIDEO 24.4 IN MODULE 7
 
 
 # Review: number of host addresses in a subnet 
@@ -45,5 +51,4 @@
    2^8 - 2 = 254
 
 
-STOPPED AT VIDEO 24.3 IN MODULE 7
 
