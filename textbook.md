@@ -34,5 +34,18 @@
 - Transpmit the bits.
 
 ## Ethernet LANS
+- ethernet connecting devices, with SOHO (small office or home network) with Router, switch and access point for wifi in one device. 
+
+
+## Etherent physical layers
+- Unshielded twisted pair (UTP)
+- Kinds of ethernet 
+   1. 10 Mbps, Ethernet, 10BASE-T, 802.3, copper, 100m
+   2. 100 Mbps, Fast Ethernet, 100BASE-T, 802.3u, copper, 100m
+   3. 1000 Mbps, Gigabit Ethernet, 1000BASE-LX, 802.Z, Fiber, 5000,
+   4. 1000 Mbps, Gigabit Ethernet, 1000BASE-T, 802.3ab, copper, 100m
+   5. 10 Gbps, 10 Gig Ethernet, 10Gbase-T, 802.3an, copper, 100m
+
+
 
 
