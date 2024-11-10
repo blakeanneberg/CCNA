@@ -168,6 +168,7 @@
 - Ethernet WAN
 1. WANs by their very nature give IP routers a way to forward IP packets from a LAN at one site over the WAN to another LAN at another site
 - 802.3 Header, IP Packet, 802.3 Trailer ---> H802.3 Header (Source = Router 1 G0/1 MAC, Destination = Router 2 G0/0 MAC) , IP Packet, 802.3 Trailer ---> 802.3 Header, IP Packet, 802.3 Trailer 
+2. Ethernet Line Service E-Line: the kind of pont to point ethernet WAN services
 
 ## IP Routing  
 - Internet Protocol IP focuses on job of routing data
@@ -219,6 +220,26 @@
 2. Each routers routing protocol tells its neighbors about the routes in its routing table, including directly connected routes and routes learned from other routers
 3. EAch routers routing protocol listens to messages from neighboring routers and learns routes with net hop router of that route typically being the neighbor from which the rout was leanrned
 
+## DNS
+- hostname: human readibile 
+- DNS: ip addresses used by the hostname
+- Routers treat DNS messages just like any other IP packet, routing them based on destination IP addresses
+- DNS defines protocol of working with other DNS servers 
+
+## Address REsolution Protocol ARP
+- how a router knows what MAC address to use for destination 
+- Method by which any host or router on LAN can dynamically learn the MAC address of another IP host or router on the same LAN
+- ARP request: which is a message that makes the simple request "if this is your IP adderess, please reply with your MAC address"
+- ARP reply: which lists both origional IP address and matching MAC address
+- ARP cache or ARP table: keeps information on MAC and IP addressees 
+- See ARP cache by using `arp -a` command
+
+## Ping
+- uses Internet Control Message Protocol ICMP, sending a ICMP echo request to another IP  
+- uses layers 1, 2, 3 of OSI model
+- Only tests basic IP connectivity 
+
+# Implementing Ethernet LANs
 
 
-STOPPED ON PAGE 66
+STOPPED ON PAGE 90 
