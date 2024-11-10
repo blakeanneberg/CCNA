@@ -145,7 +145,79 @@
 - Leased line uses two pairs of wires, one for each direction of sending data, allows ful duplex operations 
 - Telcos put equipment in buildings called central offices COs 
 - term is fact that the telco leases the use of the leased line to a customer but the customer does not permanently own the line
+- Data link protocols of High Level Data Link Control HDLC and Point to Point Protocol, 
+1. HDLC fram can only ogo to one destination device (router on other end) so destination is implied in address field.
+|  HDLC and PPP Fields frame form   |  Ethernet Equivalent     |  Description    |
+|-----------------------------------|--------------------------|-----------------|
+|  Flag                             |  Preamble SFD            | patern to show a new frame is arriving  |
+|  Address                          |  Desination Address      |  Identitfes destination device, not interesting for leased PPP topos |
+|  Control                          |  N/A                     |  No longer used between routers |
+|  Type                             |  Type                    |  Identifies type of layer 3 packet encapsulated inside data portion of the frame  |
+|  FCS                              |  FCS                     |  Identifies field used by the error detection process |
 
+### Routers using WAN Data Link
+1. TCP/IP network layer focuses on forwarding IP Packets from the sending host to the destination host
+2. Routers de-encapsulating and re-encapsulating IP packets
+- 802.3 Header, IP Packet, 802.3 Trailer ---> HDLC Header, IP Packet, HDLC Trailer ---> 802.3 Header, IP Packet, 802.3 Trailer 
+
+## Ethernet as a WAN technology 
+- Fiber ethernet link to connec a CPE Router to a service providers WAN
+1. customer connects to an ethernet link using a router interface. 
+2. fiber ethernet link leaves the customer building and connects to some nearby Service provider location calle a point of presence POP, sp uses a ethernet switch. inside the SP network SP users any tech it wants to create specific ethernet WAN serves
+
+- Ethernet WAN
+1. WANs by their very nature give IP routers a way to forward IP packets from a LAN at one site over the WAN to another LAN at another site
+- 802.3 Header, IP Packet, 802.3 Trailer ---> H802.3 Header (Source = Router 1 G0/1 MAC, Destination = Router 2 G0/0 MAC) , IP Packet, 802.3 Trailer ---> 802.3 Header, IP Packet, 802.3 Trailer 
+
+## IP Routing  
+- Internet Protocol IP focuses on job of routing data
+- In Network layer TCP/IP two options exist for the main protocol around which all other network layer functions resolve:
+1. IP version 4 IPv4
+2. IP version 6 IPv6
+
+### Network Layer routing (forwarding) logic
+- Send Packet to defualt router: Host choose where to send IP packets, often to a nearby router, router makes choices of where to send IP packet next
+- Defualt router is also referred to as the defualt gateway 
+- Routing data across the network: 
+1. All routers use same general proecess to route packet: IP Routing Table
+2. Table lists IP address groupings, called IP networks and IP subnets
+3. When router receves a packet, it compares the packets destination IP address to the entries in the routing able and makes a match. Matching entry also lists directions that tell the router where to foward the backet next
+- Delivering data to the end destination 
+
+### How network Layer routing uses LANs and WANs
+- Network Link layer thinks about the bigger voew of the goal like "send this packet to the specified next router or host"
+- Data link layer thinks about the specifics like "Encapsulate the packet in a data link frame and transmit it" 
+1. Network Layer logic in a host or router must hand off packet to data link layer protocol
+2. Which asks the physical layer to actually send the data.
+3. Data link layer adds the approporiate header and trailer to the packet, creating a frame before sending frames over each physical network
+- Major steps in a routers internal network layer routing for each packet beginning with frame arriving in routers interface
+1. USe data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occured, discard the frame
+- Major steps in a routers internal network layer routing for each packet beginning with frame arriving in routers interface
+1. USe data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occured, discard the frame- Major steps in a routers internal network layer routing for each packet beginning with frame arriving in routers interface
+1. Use data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occured, discard the frame
+2. Assuming the frame was not discarded in step 1, discard old data link header and trailer, leaving IP packet 
+3. Compare IP packets destination IP address to routing table, find the route that best matches destination address. Rout identifies the outgoing interface of the router and possibly the next hop router IP address
+4. Encapsulate the IP packet inside a new data link header and trailer, approporiate for the outgoing interface and forward the frame
+- How a router determins which data link address to use is the IP Address Resolution Protocl ARP. ARP dynamically learns the data link address of an IP Host connected to a LAN. Because routers build new data link headers and trailers, and becase new headers contain data link addresses, PC/Routers must have way to decide what data link addresses to use
+
+### Rules for groups of IP addresses (Networks and subnets) 
+- Subnetting 
+1. Two IP addresses, not seperated from each other by a router, must be in the same group (subnet)
+2. TWo IP addresses, seperated from each other by at least one router, must be in different groups (subnets)
+- IPv4 Header of 4 bytes, for a total of 20 bytes, header lists 32 bit source IP address, 32 bit destination IP address
+|  Version  |  Length   |  DS Field |  Packet Length              |
+|  Identification                   |  Flags |  Fragment offset   |
+|  Time to Live   |  Protocol |     |  Header Checksum            |
+|  Source IP Address                                              |
+|  Destination IP Address                                         |
+
+### How IP routing prootcols help IP routing
+- Hosts need to know th eIP address of their defaul router so that hosts can send packets to remote destinations
+- Routers need to know routes so they forward packets to each and every reachable IP network and IP subnet 
+- Routing protocols for learning routs
+1. Each router, independent of routing protocol, adds a route to its routing table for each subnet directly connected to the router
+2. Each routers routing protocol tells its neighbors about the routes in its routing table, including directly connected routes and routes learned from other routers
+3. EAch routers routing protocol listens to messages from neighboring routers and learns routes with net hop router of that route typically being the neighbor from which the rout was leanrned
 
 
 
