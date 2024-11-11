@@ -241,5 +241,70 @@
 
 # Implementing Ethernet LANs
 
+## Accessing Cisco Catalyst Switch CLI
+- UTP 10/100/1000 meaning unshielded twisted pair 10BASE-T (10 Mbps), 100BASE-T (1000 Mbps), or 1000BASE-T (1 Gbps) no matter the current speed used on the interface
+- Interface IDs to identify specific ports
+|  Speeds Supported  | Common Name  | Example Switch Interface ID | Valid Apprevations | 
+|---                 |---           |---                          |---                 |
+|  10 Mbps           |Ethernet      |ethernet0/0                  |E0/0,Et0/0, Eth0/0  |
+|  10/100 Mbps       |10/100        |FastEthernet 0/1             |F0/1, Fa0/1         |
+|  10/100/1000 Mbps  |10/100/1000   |GigabitEthernet 1/0/1        |G1/0/1, Gi1/0/1     |
+|1G/2.5G/10G         |Multigig      |TenGigabit 1/0/2             |T1/0/2, Te1/0/2     |
 
-STOPPED ON PAGE 90 
+## Console: physical port specifically to allow access to CLI
+- Old DB-9 nine pins
+- UTP rollover cable with RJ-45 connectors on each end. Rollover pinout uses eight wires, rolling the wire at pin 1 to pin 8, pin 2 to pin 7 , pin 3 to pin 6 and so on
+- USB connecotr also needs software driver for PC Os so it knows the device on the other end of the USB is the console of a Cisco device. 
+1. Terminal emulator sofware treats all data as text for user to read.
+2. Emulator must be configured to use PCs serial port to match the settings on the switchs console port settings, default settings: 9600 Bits/Second, No hardware flow control, 8-bit ASCII, No parity bits, 1 stop bit. 
+
+- Telnet
+1. telnet is terminal application and telnet server (the switch). Telnet client, device that sits in front of the user, accepts keyboard input and sends those commands to the telnet server. telnet server accepts text, interprets text as a command and replies back. 
+2. Telnet sends all data as clear text data
+
+- Secure Shell SSH
+1. SSH encrypts
+
+## User> and Enable# (Privileged) Modes
+- USERNAME>`user EXEC mode` also called user mode allows
+1. look around but not break anything
+2. Exec mode part of the name refers to the fact that in this mode, when you enter a command, the switch executes the command and then displayes messages that describe the commands results. 
+- USERNAME# `privileged mode` also known as enable mode. 
+1. allows more powerful commands
+2. moves user from user mode to enable mode 
+- `reload` command tells switch to reinitialze or reboot Cisco IOS, only from privildged mode. 
+- EXEC: commands that can be used in either user (EXEC) mode or enable (EXEC) mode are called EXEC commands
+- `!` are comments
+- `show running-config` lists current configuration in the switch
+- `enable secret love` config commands defines the password that all users must use to reach enable mode. 
+- `login` switch performs simple password check
+- `password faith` command defines the passsword the console user must type when prompted
+- `?` provides help for all commands aviable in the mode
+- `debug` issues messges over time as events continue to occure. 
+
+## Configuration Submodes and contexts
+- Commands entered in configuration mode update the active conf file, changes to the config occure immediately each time you press the enter key at the end of a command. 
+- `interface` 
+1. enter interface configuration mode by entering `interface FastEthernet 0/1` configuration command. 
+- `configure terminal` EXEC command allows movement from enable mode to global config mode
+- `hostname Fred` configures switches name
+- `line console 0` movement from global configuration mode to console line configuration mode 
+- Common Switch Configration Modes
+|  Prompt   | Name of mode | Context setting commands to reach this mode   |
+|---        |---           |---                                            |
+|  hostname(config)#   | Global | None - First mode after configure terminal |
+|  hostname(config-line)#  | Lane   | line console 0  |
+|  hostname(config-if)# | Interface | interface type number |
+|  hostname(config-vlan)#  | VLAN   | vlan number  |
+
+## Saving/Sotring Switch Configuration files
+- RAM: sometimes called DRAM dynamic random acccess memory used by switch for working storage, the running (active) confi file is stored here
+- Flash memory: either a chip inside the switch or a removable memory card, stores its Cisco IOS at boot by defualt, can be used to store any other files, including backup copies of config files
+- ROM: Read only memory stores a bootstrap or boothelper program that is loaded when the swith powers on. Bootstrap program then finds the full Cisco IOS image and manags the process of loading Cisco IOS into RAM, at which Cisco IOS takes over operation of the switcho
+- NVRAM: Nonvolatile RAM stores initial startup configration file that is used when the switch is first powered on and when the switch is reloaded. 
+- `startup-config` stores initial config used anytime the switch reloads Cisco ios in NVRAM
+- `running-config` stores currently used config commands. This file changes dynamically when somone enters commands in conf mode in RAM, to save you have to copy the running-config file into NVRAM and overwrite the old startup-config file. 
+- `copy running-config startup-config` back ups the running config to the startup config file, overwriting the current startup config file with what is currently in the runing config file. 
+- erase the startup-config file: `write erase` --> `erase startup-config` --> `erase nvram` and then clear out running-config file, simply erase startup-config file and then `reload` the switch and the running config will be empty at the end of the process
+
+STOPPED ON PAGE 111 
