@@ -21,7 +21,7 @@
 - Protocols
 1. IP, ICMP 
 - Addressing and routing: packets of data 
-- Encapsulate the data supplied by the transport layer inside a newtwrk layer IP header
+- Encapsulate the data supplied by the transport layer inside a network layer IP header
 
 ### Data Link (Data Link header, IP, TCP, Data link trailer = Frame) 
 - Control use of physical  link (standards for roads, cars and traffic signals)
@@ -36,9 +36,9 @@
 ## Ethernet LANS
 - Ethernet connecting devices, with SOHO (small office or home network) with Router, switch and access point for wifi in one device. 
 
-## Etherent physical layers
+## Ethernet physical layers
 - Unshielded twisted pair (UTP)
-- Kinds of ethernet 
+- Kinds of Ethernet 
    1. 10 Mbps, Ethernet, 10BASE-T, 802.3, copper, 100m
    2. 100 Mbps, Fast Ethernet, 100BASE-T, 802.3u, copper, 100m
    3. 1000 Mbps, Gigabit Ethernet, 1000BASE-LX, 802.Z, Fiber, 5000,
@@ -54,7 +54,7 @@
 | Routers               |  Switches                |
 | WAPs (ethernet)       | none                     |
 
-- Auto-MDIX automatic medium dependent interface crossover can redirect a strait through pintout to crossover and vicse versa 
+- Auto-MDIX automatic medium dependent interface crossover can redirect a strait through pinout to crossover and visa versa 
 - UTP cabling pin outs for 1000BASE-T
    1. Requires 4 wire pairs
 
@@ -95,7 +95,7 @@
 
 #### Group Addresses
 - Broadcast Address: Frames sent to this address should be delivered to all devices on Ethernet lan, FFFF.FFFF.FFFF
-- Multicast addresses: Frames sent to a multicast Ethernet address will be copied and forwarded to a subset fo the deices on the LAN that volunteers to receive frames sent to a specific multicast address
+- Multicast addresses: Frames sent to a multicast Ethernet address will be copied and forwarded to a subset of the deices on the LAN that volunteers to receive frames sent to a specific multicast address
 
 #### Ethernet type field or EtherType
 - help the network process on routers and hosts, identifies the type of network layer (layer 3) packet that sits inside the Ethernet frame.
@@ -141,16 +141,16 @@
 
 ## Leased Line WANs 
 - service is a physical layer services, delivers bits in both directions at predetermined speed using full duplex
-- it acts as if you have a full duplex crossover ethernet link beweeen two routers
+- it acts as if you have a full duplex crossover Ethernet link between two routers
 - Leased line uses two pairs of wires, one for each direction of sending data, allows ful duplex operations 
 - Telcos put equipment in buildings called central offices COs 
 - term is fact that the telco leases the use of the leased line to a customer but the customer does not permanently own the line
 - Data link protocols of High Level Data Link Control HDLC and Point to Point Protocol, 
-1. HDLC fram can only ogo to one destination device (router on other end) so destination is implied in address field.
+1. HDLC fram can only go to one destination device (router on other end) so destination is implied in address field.
 |  HDLC and PPP Fields frame form   |  Ethernet Equivalent     |  Description    |
 |-----------------------------------|--------------------------|-----------------|
-|  Flag                             |  Preamble SFD            | patern to show a new frame is arriving  |
-|  Address                          |  Desination Address      |  Identitfes destination device, not interesting for leased PPP topos |
+|  Flag                             |  Preamble SFD            | pattern to show a new frame is arriving  |
+|  Address                          |  Destination Address      |  Identities destination device, not interesting for leased PPP topos |
 |  Control                          |  N/A                     |  No longer used between routers |
 |  Type                             |  Type                    |  Identifies type of layer 3 packet encapsulated inside data portion of the frame  |
 |  FCS                              |  FCS                     |  Identifies field used by the error detection process |
@@ -161,14 +161,14 @@
 - 802.3 Header, IP Packet, 802.3 Trailer ---> HDLC Header, IP Packet, HDLC Trailer ---> 802.3 Header, IP Packet, 802.3 Trailer 
 
 ## Ethernet as a WAN technology 
-- Fiber ethernet link to connec a CPE Router to a service providers WAN
-1. customer connects to an ethernet link using a router interface. 
-2. fiber ethernet link leaves the customer building and connects to some nearby Service provider location calle a point of presence POP, sp uses a ethernet switch. inside the SP network SP users any tech it wants to create specific ethernet WAN serves
+- Fiber Ethernet link to connect a CPE Router to a service providers WAN
+1. customer connects to an Ethernet link using a router interface. 
+2. fiber Ethernet link leaves the customer building and connects to some nearby Service provider location called a point of presence POP, service provider uses a Ethernet switch. Inside the SP network SP users any tech it wants to create specific Ethernet WAN serves
 
 - Ethernet WAN
 1. WANs by their very nature give IP routers a way to forward IP packets from a LAN at one site over the WAN to another LAN at another site
 - 802.3 Header, IP Packet, 802.3 Trailer ---> H802.3 Header (Source = Router 1 G0/1 MAC, Destination = Router 2 G0/0 MAC) , IP Packet, 802.3 Trailer ---> 802.3 Header, IP Packet, 802.3 Trailer 
-2. Ethernet Line Service E-Line: the kind of pont to point ethernet WAN services
+2. Ethernet Line Service E-Line: the kind of point to point Ethernet WAN services
 
 ## IP Routing  
 - Internet Protocol IP focuses on job of routing data
@@ -177,34 +177,34 @@
 2. IP version 6 IPv6
 
 ### Network Layer routing (forwarding) logic
-- Send Packet to defualt router: Host choose where to send IP packets, often to a nearby router, router makes choices of where to send IP packet next
-- Defualt router is also referred to as the defualt gateway 
+- Send Packet to default router: Host choose where to send IP packets, often to a nearby router, router makes choices of where to send IP packet next
+- Default router is also referred to as the default gateway 
 - Routing data across the network: 
-1. All routers use same general proecess to route packet: IP Routing Table
+1. All routers use same general process to route packet: IP Routing Table
 2. Table lists IP address groupings, called IP networks and IP subnets
-3. When router receves a packet, it compares the packets destination IP address to the entries in the routing able and makes a match. Matching entry also lists directions that tell the router where to foward the backet next
+3. When router receives a packet, it compares the packets destination IP address to the entries in the routing able and makes a match. Matching entry also lists directions that tell the router where to forward the packet next
 - Delivering data to the end destination 
 
 ### How network Layer routing uses LANs and WANs
-- Network Link layer thinks about the bigger voew of the goal like "send this packet to the specified next router or host"
+- Network Link layer thinks about the bigger view of the goal like "send this packet to the specified next router or host"
 - Data link layer thinks about the specifics like "Encapsulate the packet in a data link frame and transmit it" 
 1. Network Layer logic in a host or router must hand off packet to data link layer protocol
 2. Which asks the physical layer to actually send the data.
-3. Data link layer adds the approporiate header and trailer to the packet, creating a frame before sending frames over each physical network
+3. Data link layer adds the appropriate header and trailer to the packet, creating a frame before sending frames over each physical network
 - Major steps in a routers internal network layer routing for each packet beginning with frame arriving in routers interface
-1. USe data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occured, discard the frame
+1. Use data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occurred, discard the frame
 - Major steps in a routers internal network layer routing for each packet beginning with frame arriving in routers interface
-1. USe data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occured, discard the frame- Major steps in a routers internal network layer routing for each packet beginning with frame arriving in routers interface
-1. Use data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occured, discard the frame
+1. USe data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occurred, discard the frame- Major steps in a routers internal network layer routing for each packet beginning with frame arriving in routers interface
+1. Use data link frame check sequence (FCS) field to ensure the frame had no errors, if errors occurred, discard the frame
 2. Assuming the frame was not discarded in step 1, discard old data link header and trailer, leaving IP packet 
 3. Compare IP packets destination IP address to routing table, find the route that best matches destination address. Rout identifies the outgoing interface of the router and possibly the next hop router IP address
-4. Encapsulate the IP packet inside a new data link header and trailer, approporiate for the outgoing interface and forward the frame
-- How a router determins which data link address to use is the IP Address Resolution Protocl ARP. ARP dynamically learns the data link address of an IP Host connected to a LAN. Because routers build new data link headers and trailers, and becase new headers contain data link addresses, PC/Routers must have way to decide what data link addresses to use
+4. Encapsulate the IP packet inside a new data link header and trailer, appropriate for the outgoing interface and forward the frame
+- How a router determines which data link address to use is the IP Address Resolution Protocol ARP. ARP dynamically learns the data link address of an IP Host connected to a LAN. Because routers build new data link headers and trailers, and because new headers contain data link addresses, PC/Routers must have way to decide what data link addresses to use
 
 ### Rules for groups of IP addresses (Networks and subnets) 
 - Subnetting 
-1. Two IP addresses, not seperated from each other by a router, must be in the same group (subnet)
-2. TWo IP addresses, seperated from each other by at least one router, must be in different groups (subnets)
+1. Two IP addresses, not separated from each other by a router, must be in the same group (subnet)
+2. Two IP addresses, separated from each other by at least one router, must be in different groups (subnets)
 - IPv4 Header of 4 bytes, for a total of 20 bytes, header lists 32 bit source IP address, 32 bit destination IP address
 |  Version  |  Length   |  DS Field |  Packet Length              |
 |  Identification                   |  Flags |  Fragment offset   |
@@ -212,25 +212,25 @@
 |  Source IP Address                                              |
 |  Destination IP Address                                         |
 
-### How IP routing prootcols help IP routing
-- Hosts need to know th eIP address of their defaul router so that hosts can send packets to remote destinations
+### How IP routing protocols help IP routing
+- Hosts need to know the IP address of their default router so that hosts can send packets to remote destinations
 - Routers need to know routes so they forward packets to each and every reachable IP network and IP subnet 
 - Routing protocols for learning routs
 1. Each router, independent of routing protocol, adds a route to its routing table for each subnet directly connected to the router
 2. Each routers routing protocol tells its neighbors about the routes in its routing table, including directly connected routes and routes learned from other routers
-3. EAch routers routing protocol listens to messages from neighboring routers and learns routes with net hop router of that route typically being the neighbor from which the rout was leanrned
+3. Each routers routing protocol listens to messages from neighboring routers and learns routes with net hop router of that route typically being the neighbor from which the rout was learned
 
 ## DNS
-- hostname: human readibile 
+- hostname: human readable 
 - DNS: ip addresses used by the hostname
 - Routers treat DNS messages just like any other IP packet, routing them based on destination IP addresses
 - DNS defines protocol of working with other DNS servers 
 
-## Address REsolution Protocol ARP
+## Address Resolution Protocol ARP
 - how a router knows what MAC address to use for destination 
 - Method by which any host or router on LAN can dynamically learn the MAC address of another IP host or router on the same LAN
-- ARP request: which is a message that makes the simple request "if this is your IP adderess, please reply with your MAC address"
-- ARP reply: which lists both origional IP address and matching MAC address
+- ARP request: which is a message that makes the simple request "if this is your IP address, please reply with your MAC address"
+- ARP reply: which lists both original IP address and matching MAC address
 - ARP cache or ARP table: keeps information on MAC and IP addressees 
 - See ARP cache by using `arp -a` command
 
@@ -244,7 +244,7 @@
 ## Accessing Cisco Catalyst Switch CLI
 - UTP 10/100/1000 meaning unshielded twisted pair 10BASE-T (10 Mbps), 100BASE-T (1000 Mbps), or 1000BASE-T (1 Gbps) no matter the current speed used on the interface
 - Interface IDs to identify specific ports
-|  Speeds Supported  | Common Name  | Example Switch Interface ID | Valid Apprevations | 
+|  Speeds Supported  | Common Name  | Example Switch Interface ID | Valid Abbreviations | 
 |---                 |---           |---                          |---                 |
 |  10 Mbps           |Ethernet      |ethernet0/0                  |E0/0,Et0/0, Eth0/0  |
 |  10/100 Mbps       |10/100        |FastEthernet 0/1             |F0/1, Fa0/1         |
@@ -254,9 +254,9 @@
 ## Console: physical port specifically to allow access to CLI
 - Old DB-9 nine pins
 - UTP rollover cable with RJ-45 connectors on each end. Rollover pinout uses eight wires, rolling the wire at pin 1 to pin 8, pin 2 to pin 7 , pin 3 to pin 6 and so on
-- USB connecotr also needs software driver for PC Os so it knows the device on the other end of the USB is the console of a Cisco device. 
-1. Terminal emulator sofware treats all data as text for user to read.
-2. Emulator must be configured to use PCs serial port to match the settings on the switchs console port settings, default settings: 9600 Bits/Second, No hardware flow control, 8-bit ASCII, No parity bits, 1 stop bit. 
+- USB connector also needs software driver for PC Os so it knows the device on the other end of the USB is the console of a Cisco device. 
+1. Terminal emulator software treats all data as text for user to read.
+2. Emulator must be configured to use PCs serial port to match the settings on the switches console port settings, default settings: 9600 Bits/Second, No hardware flow control, 8-bit ASCII, No parity bits, 1 stop bit. 
 
 - Telnet
 1. telnet is terminal application and telnet server (the switch). Telnet client, device that sits in front of the user, accepts keyboard input and sends those commands to the telnet server. telnet server accepts text, interprets text as a command and replies back. 
@@ -268,28 +268,28 @@
 ## User> and Enable# (Privileged) Modes
 - USERNAME>`user EXEC mode` also called user mode allows
 1. look around but not break anything
-2. Exec mode part of the name refers to the fact that in this mode, when you enter a command, the switch executes the command and then displayes messages that describe the commands results. 
+2. Exec mode part of the name refers to the fact that in this mode, when you enter a command, the switch executes the command and then displays messages that describe the commands results. 
 - USERNAME# `privileged mode` also known as enable mode. 
 1. allows more powerful commands
 2. moves user from user mode to enable mode 
-- `reload` command tells switch to reinitialze or reboot Cisco IOS, only from privildged mode. 
+- `reload` command tells switch to reinitialize or reboot Cisco IOS, only from privileged mode. 
 - EXEC: commands that can be used in either user (EXEC) mode or enable (EXEC) mode are called EXEC commands
 - `!` are comments
 - `show running-config` lists current configuration in the switch
 - `enable secret love` config commands defines the password that all users must use to reach enable mode. 
 - `login` switch performs simple password check
-- `password faith` command defines the passsword the console user must type when prompted
-- `?` provides help for all commands aviable in the mode
-- `debug` issues messges over time as events continue to occure. 
+- `password faith` command defines the password the console user must type when prompted
+- `?` provides help for all commands available in the mode
+- `debug` issues messages over time as events continue to occur. 
 
 ## Configuration Submodes and contexts
-- Commands entered in configuration mode update the active conf file, changes to the config occure immediately each time you press the enter key at the end of a command. 
+- Commands entered in configuration mode update the active conf file, changes to the config occur immediately each time you press the enter key at the end of a command. 
 - `interface` 
 1. enter interface configuration mode by entering `interface FastEthernet 0/1` configuration command. 
 - `configure terminal` EXEC command allows movement from enable mode to global config mode
 - `hostname Fred` configures switches name
 - `line console 0` movement from global configuration mode to console line configuration mode 
-- Common Switch Configration Modes
+- Common Switch Configuration Modes
 |  Prompt   | Name of mode | Context setting commands to reach this mode   |
 |---        |---           |---                                            |
 |  hostname(config)#   | Global | None - First mode after configure terminal |
@@ -297,14 +297,14 @@
 |  hostname(config-if)# | Interface | interface type number |
 |  hostname(config-vlan)#  | VLAN   | vlan number  |
 
-## Saving/Sotring Switch Configuration files
-- RAM: sometimes called DRAM dynamic random acccess memory used by switch for working storage, the running (active) confi file is stored here
-- Flash memory: either a chip inside the switch or a removable memory card, stores its Cisco IOS at boot by defualt, can be used to store any other files, including backup copies of config files
-- ROM: Read only memory stores a bootstrap or boothelper program that is loaded when the swith powers on. Bootstrap program then finds the full Cisco IOS image and manags the process of loading Cisco IOS into RAM, at which Cisco IOS takes over operation of the switcho
-- NVRAM: Nonvolatile RAM stores initial startup configration file that is used when the switch is first powered on and when the switch is reloaded. 
+## Saving/Storing Switch Configuration files
+- RAM: sometimes called DRAM dynamic random access memory used by switch for working storage, the running (active) config file is stored here
+- Flash memory: either a chip inside the switch or a removable memory card, stores its Cisco IOS at boot by default, can be used to store any other files, including backup copies of config files
+- ROM: Read only memory stores a bootstrap or boothelper program that is loaded when the switch powers on. Bootstrap program then finds the full Cisco IOS image and manages the process of loading Cisco IOS into RAM, at which Cisco IOS takes over operation of the switch
+- NVRAM: Nonvolatile RAM stores initial startup configuration file that is used when the switch is first powered on and when the switch is reloaded. 
 - `startup-config` stores initial config used anytime the switch reloads Cisco ios in NVRAM
-- `running-config` stores currently used config commands. This file changes dynamically when somone enters commands in conf mode in RAM, to save you have to copy the running-config file into NVRAM and overwrite the old startup-config file. 
-- `copy running-config startup-config` back ups the running config to the startup config file, overwriting the current startup config file with what is currently in the runing config file. 
+- `running-config` stores currently used config commands. This file changes dynamically when someone enters commands in config mode in RAM, to save you have to copy the running-config file into NVRAM and overwrite the old startup-config file. 
+- `copy running-config startup-config` back ups the running config to the startup config file, overwriting the current startup config file with what is currently in the running config file. 
 - erase the startup-config file: `write erase` --> `erase startup-config` --> `erase nvram` and then clear out running-config file, simply erase startup-config file and then `reload` the switch and the running config will be empty at the end of the process
 
 STOPPED ON PAGE 111 
