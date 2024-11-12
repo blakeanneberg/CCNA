@@ -308,3 +308,79 @@
 - erase the startup-config file: `write erase` --> `erase startup-config` --> `erase nvram` and then clear out running-config file, simply erase startup-config file and then `reload` the switch and the running config will be empty at the end of the process
 
 STOPPED ON PAGE 111 
+
+# Ethernet LAN switching 
+
+## Switching logic
+- either forward the frame out some other ports or ignore the frame
+1. Main job: Deciding when to foward a frame or when to filter (not forward the frame), based on the destination MAC address. Table lists MAC addresses and outgoing interfaces relative to that one switch. 
+2. Overhead functions: Preparing to forward future frames by learning the source MAC addresses of each frome received by the switch
+3. Overhead function: Coooperating with all switches to prevent endless looping of frames by using Spanning Tree Protocol STP
+- Example: 
+1. Frame came in F0/1
+2. Destined for 0200.2222.2222. 
+3. Forward Out F0/2 
+4. Filter (Do not send) on F0/3, F0/4
+- Frames called Known Unicast frames (known unicasts) because the destination address is a unicast address and the destination is known. 
+
+## Learning MAC addresses
+- Learn MAC addresses and interfaces to put into its address table
+- Listen to incoming frames and examining source MAC address in the frame, and lists interface from which frame arrived. 
+- Unknown unicast frame: if there is no matching entry in the table, switches forward the frame out all interfaces (except theincomeing interface), called flooding. 
+- Flood unknown unicast frames: if switches dont know where to send it, send it weverywhere
+- Flood LAN broadcast frames: frames destined to the ethernet braodcast address of FFF.FFF.FFF, helps deliver a copy of the frame to all devices in the lan
+
+## Avoiding Loops using spanning tree protocol
+- Spanning tree protocol STP prevents loops and flooded frames indefenently, STP blocks some ports from forwarding frames so that only one active path exists between any pair of LAN segments
+- To avoid Layer 2 loops, all switches need to use STP
+- STP causes each interface on a switch to settle into either a blocking state or a forwarding state
+1. Blocking: interface cannot forward or receive data frames. IF correct subset of the interfaces is blocked, only a single currently active logical path exists between each pair of lans. 
+2. Forwarding: interface can send and receive data frames. 
+### LAN Switching logic summary
+1. Switches forward frames based on the destination MAC address
+- IF destinatinon MAC address is broadcast, multicast or unknown destination univcast (a unicast not listed in the MAC table), the switch floods the frame
+- IF the destination MAC address is a known unicast address ( a unicast address found in the MAC table): IF the outgoing interface listed in the MAC address table is different from the interface in which the frame was received, the switch forwards the frame out the outgoing interface. IF the outgoing interface is the same oas the interface in which the frame was receved, the switch filters the frame, meaning that the switch ignores the frame and does not forward it.
+2. Switches learn MAC address table entries based on the source MAC address
+- For each received frame, note the source MAC address and incoming interface ID
+- If not yet in the MAC address table, add an entry listing the MAC address and incoming interface. 
+3. Switches use STP to prevent loops by causing some interfaces to block, meaning that they do not send or receive frames. 
+
+
+## Verifying and Analyzing Ethernet Switching 
+
+- `show mac address-table` to see a switches MAC address table and shows overhead static MAC addresses that we can ignore
+- `show mac address-table dynamic` shows all dynamically leanred MAC addresses only. Type column is how the switch learned the MAC address. You can also stattically predefine MAC table entries with port security.
+- VLANs virtual LANs: LAN switches forward ethernet frames inside a VLAN. If a frame enters via a port in VLAN 1, then the switch will forward or flood that frame out other ports in VLAN 1 only, and not out any ports that hapen to be assigned to another VLAN 
+
+## Switch Interfaces
+- `show interfaces status` shows ports, status, VLAN, Duplex, Speed and type
+- `show interfaces f0/1 status` lists status in a single link
+- `show interfaces f0/1` displays a detailed set of messages about the interface
+- `show interfaces` can have arguments: 
+1. with `counters` lists stats about incoming and outgoing frames on the intrerfaces, number of unicast, multicast and broadcast frames (both in and out) and total byte count for those frames
+
+## Finding entries in MAC address Table 
+- `show mac address-table` with arguments:
+1. `dynamic address 0200.1111.1111` and if address exists, the output lists the address 
+- `show mac address-table dynamic interface` for a particual port with arguments:
+1. `fastEthernet 0/1` 
+- `show mac address-table dynamic vlan` for one vlan with for MAC address table entries with arguments:
+1. `1` to show VLAN 1
+
+## Managing the MAC address table for Aging and Clearing
+- MAC addresses do not remain in the table indefinitely due to age (timer set to 300 seconds), due to table filling, and using a command
+1. `show mac address-table aging-time` shows the global aging time 
+- MAC address table uses contnet addressable memory CAM, a physical memory that has great table lookup capibiliites 
+- `clear mac address-table dynamic` removes the dynamic entries from MAC address table in enable mode 
+1. clear by vlan: `clear mac adddress-table dynamic vlan` + `vland number`
+2. clear by interface: `clear mac adddress-table dynamic interface` + `interface-ID`
+3. clear by MAC address: `clear mac adddress-table dynamic address` + `mac-address`. 
+
+
+
+
+
+
+
+
+
