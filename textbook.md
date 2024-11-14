@@ -378,9 +378,22 @@ STOPPED ON PAGE 111
 
 
 
+# Configuring Basic Switch Management
+1. Data Plane
+- process of forwarding frames received by the switch
+2. Control Plane
+- Processes that control and change the switcs data plane
+- configuration to enable or disable an interface
+- control the speed used by each interface
+- dynamic processes of Spanning Tree to block some ports to prevent loops
+3. Management Plane
+- Device Management features
+- Telnet / SSH used to connect to the CLI
+
+## Securing user mode and privileged mode with simple passoword
+- one password for console users and a different password for telnet users 
+- Telnet password,`vty` password. 
 
 
-
-
-
+Stopped on page 135
 
