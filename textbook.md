@@ -393,7 +393,22 @@ STOPPED ON PAGE 111
 ## Securing user mode and privileged mode with simple passoword
 - one password for console users and a different password for telnet users 
 - Telnet password,`vty` password. 
+- `enable passsword` into enable mode
+- `login` tells IOS to enable use of simple shared password
+- `enable secret` password-value: configures the enable password as a global config 
+- `show running-config` shows configuration in the switch
+
+### Config Checklist for shared passwords for console, telnet and enable password
+1. Configure enable pssword with `enable secret` password value command
+2. Configure console password
+- Use `line con 0` command to enter console configuration mode
+- Use the `password` password-value subcommand to set the value of the console password
+- USe the `login` subcommand to enable console password security using a simple password
+3. Configure the Telnet (vty) password:
+- Use `line vty 0 15` command to entre vty conf mode for all 16 vty lines (0 - 15)
+- Use `password` password-value subcommand to set the value of the vty password
+- Use `login` subcommand to enable console password security using a simple password
+- Use `transport input all` subcommand to enable Telnet as an input protocolfor the vty lines
 
 
-Stopped on page 135
 
