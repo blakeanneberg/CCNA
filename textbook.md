@@ -427,6 +427,10 @@ STOPPED ON PAGE 111
 - so you dont have to manually update this on each server
 
 ## SSH config process
+- Make sure you doing `transport input ssh` to only have ssh, more secure. 
+- `show ip ssh` lists status information about ssh server itself
+- `show ssh` lists info about each ssh client connected to the switch. 
+-Steps on configuing SSH: 
 1. `configure terminal` 
 2. `hostname sw1`
 3. `ip domain name example.com`
@@ -435,5 +439,25 @@ STOPPED ON PAGE 111
 6. `line vty 0 15`
 7. `login local`
 8. `transport input all` 
-9 `exit`
+9. `exit`
+10. `username blake secret yoda`
+11. `username blake2 secret yoda2`
+12. `^z`
+
+## Config web gui
+- `no ip http server` global command to disable http port 80 
+- `ip http secure-server` global command to enable https port 443 uses tls
+- ` ip http authentication` local to define authentication method ot use locally defined usernames 
+- `username name priority 15 password` pass-value global command to define one or more usernames with privilge level 15
+- `VLAN interface` acts like the switchs own NIC caled switch virtual interface starts in `VLAN 1` for ip configuration, for switch send and recive frames on any of VLAN 1 ports.
+- `default gateway` switch communicating outside the local subnet. VS config IP address and mask on one VLAN interface allows the switch to send and receive IP packets with other hosts in a subnet that exists on that VLAN
+
+## config IPv4 on a switch
+- swtich configures ipv4 address and mask on VLAN interface
+1. `interface vlan 1` command in global config mode to enter interface VLAN 1 config mode
+2. `ip address ip-address mask` to assign an ip address and mask 
+3. `no shutdown`in config mode to enable the VLAN 1 interface if its not already enabled, this administratively enables and interface on a switch
+4. `ip default-gateway ip-address` command in global config mode to config default gateway
+5. add `ip name-server ip-address1 ip-address2` command in global cong mode to config the switch to use DNS to resolve names into maitching ip address. 
+
 
