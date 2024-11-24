@@ -460,4 +460,74 @@ STOPPED ON PAGE 111
 4. `ip default-gateway ip-address` command in global config mode to config default gateway
 5. add `ip name-server ip-address1 ip-address2` command in global cong mode to config the switch to use DNS to resolve names into maitching ip address. 
 
+## config switch to learn its IP address with DHCP
+1. enter VLAN 1 config mode by using `interface vlan 1`, enable interface using `no shutdown` if neccessary
+2. Assign IP address and mask using `ip address DHCP`
+
+### verify ipv4 on a switch
+- `show running-config` shows current config 
+- `show interfaces vlan x` which shows detailed status of the vlan interface
+- `show dhcp lease` command to see (temp) leased ip addresses
+- `show ip default-gateway` 
+
+## other commands
+1. history buffer
+- `show history` an EXEC command 
+- `terminal history size x` sets size of history buffer 
+- `history size x` sets default number of history commands 
+2. `no logging console` and `logging console` wan to temp not be bothered by sys log messages
+3. `logging synchronous` tells IOS to synchronize the syslog message display with the messages requetsted using `show` commands
+4. `exec-timeout` can change length of inativity timer and you can set it as 0 minutes and 0 seconds meaning never time out
+5. `no ip domain-lookup` global config command which disables IOSs attempt to resolve the hostname into an ip address
+
+# Configuring and verifyng switch interfaces
+
+## Autonogotiation rules 
+1. both endpoints send messages, out of band companred to any specific data transmission standards, using fast link pulses FLPs
+2. the message declare all supported speed and duplex combinations
+3. after hearing the link partner, each device choses fastst speed supported by both devices and the best duplex (full being better than half)
+
+### When only one node uses autonegotioation
+- if you disable auto negotitation on both ends of all ethernet links
+- if you diable it, use predefined speed and duplex on links, `speed 1000` meaning 10000 mbps or 1 gbps, and `duplex full`. if both ends of link are set up with these same values, the link will work due to matching settings of 1000BASE-T with full duplex
+- parallell detection is when speed (detects neighboring devices physical layer standard by analyzing the neighbors incoming frames, use that speed) and Duplex, makes a defualt choice based on speed, if speed is 10 or 100 mbps and full duplex if faster
+- LAN Hub that is not new can result in half autonegotitation 
+- `show interfaces status` can show operation of autonegotiation on a switch interface 
+1. `a-full` full duplex with  the a- meaning the switch learned the value using autonogotiation
+2. `a-1000` 1000 mbps with the a- meaning the switch learned the setting using autonegotiation
+3. `auto` the interface will use autonegotitation when the link physically workss 
+
+## Auto-MDIX
+
+- automatic medium dependent interface crossover
+- gives etherent interface the ability to sense when the attached cable uses the wrong cable pinout and to overcome the problem 
+## Other commands
+-  `description` allows you to write comments
+- `no speed` can remove things like speed, duplex, description, shutdown. otherwise use the `default interface` with the interface-id global config command
+- `show interfaces` and `show interfaces descrption` list a two code status named line status and protocol status. example for interface status for notconnect is a no cable, bad cable, wrong cable pinouts with MDIX disabled, speed mismatch or neighboring device is powered off, shutdown or error disabled.
+
+## commkon layer 1 problems on working interfaces
+- Runts: frames that did not meet minimum frame size requirements, collisions can cause it.
+- Giants: frames that exceed frame size requirements
+- Input errors: a total of many counters, inlcuding runts, giants, no buffer, crc, frame, overrun and ignored counts
+- CRC: received frames that did not pass the FCS math, can be caused by collisions
+- Frame: received frames that have illegal fromat, can be caused by collisions
+- Packets output: total num of packets (frames) forwraeded out the interface
+- Output errrors: total number of packets (frames) that the switch port tried to transmit but for some problem occured
+- Collision: counter of all collission that occure when the interface is transmitting a frame
+- Late Collisions: subset of all collisions that happen after 64th byyte of frame, often point to a duplex mismatch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
