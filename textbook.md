@@ -397,6 +397,7 @@ STOPPED ON PAGE 111
 - `login` tells IOS to enable use of simple shared password
 - `enable secret` password-value: configures the enable password as a global config 
 - `show running-config` shows configuration in the switch
+- local usernames: `username blake secret youdda`
 
 ### Config Checklist for shared passwords for console, telnet and enable password
 1. Configure enable pssword with `enable secret` password value command
@@ -410,5 +411,29 @@ STOPPED ON PAGE 111
 - Use `login` subcommand to enable console password security using a simple password
 - Use `transport input all` subcommand to enable Telnet as an input protocolfor the vty lines
 
+### Config local username login for mutiple people. 
+1. use `username name secret` password global config command to add one or more username password pairs on local switch
+2. Config console use local configure  username and pass pairs
+- `line con 0` command to enter console config mode
+- `login local` subcommand to enable console to prompt for both usernames and passwords
+- use `no password` to remove any existing simple shared password, just for good housekeeping of config file
+3. config telnet vty to use locally configured username password pairs. 
+- use    `line vty 0 15` to enter vty conf mode for all 16 vty lines 0 - 15
+- use `login local` to enable switch to prompt for both username and pw for all inbound telnet users, checked vs list of local users/passwords
+- use `no password` to remove any existing simple shared password, just for good housekeeping of config file
+- use `transport input all` subcommand to enable telnet as an input protocol foro vty lines- use `no password` to remove any existing simple shared password, just for good housekeeping of config file
 
+## saving users and passwords with external server called authentication, authorization and accounting AAA server
+- so you dont have to manually update this on each server
+
+## SSH config process
+1. `configure terminal` 
+2. `hostname sw1`
+3. `ip domain name example.com`
+4. ` crypto key generate rsa` witch will ask how many bits in modulus and you can write 1024
+5. `ip ssh version 2`
+6. `line vty 0 15`
+7. `login local`
+8. `transport input all` 
+9 `exit`
 
