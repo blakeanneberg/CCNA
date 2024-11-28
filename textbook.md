@@ -517,6 +517,49 @@ STOPPED ON PAGE 111
 - Collision: counter of all collission that occure when the interface is transmitting a frame
 - Late Collisions: subset of all collisions that happen after 64th byyte of frame, often point to a duplex mismatch
 
+# Ethernet Virtual Lans
+
+- switches 
+   1. receve ethernet frames
+   2. make decisions on Mac addresses, interface in which frame arrives and interface out which the switch forwards the frame.
+   3. Forward (switch) those ethernet frames
+- Switches with VLANS
+   1. impacts switching logic for each freame becease each VLAN acts as a subset  of the switch ports in an ethernet LAN. of the switch portocol
+   2. each ethernet fram to be received in a identifible VLAN
+   3. forwarded based on MAC table entries for that VLAN
+   4. Forward out ports in that VLAN
+- How VLANS work on a single switch
+- How VLAN trunking to create VLAN that span across multiple switches
+- How to forward traffic between VLANs using a router
+- How to configure VLANs and VLAN trunks
+- How to statically assign interfaces to a VLAN
+- Issues that arrise when using VLAs and trunks 
+
+## Virtual LAN concepts 
+- LAN: includes all devices in the same broadcast domain. So when any device sends a broadcast frame, all other devices get a copy of the frame. Lan and broadcast domain are basically the same. 
+- Creating VLANS helps limit the number of hosts that receive a single broadcast frame reduces the number of hosts that waste effort processing undeeded broadcasts, and reduces secruity risks because fewer hosts see frames sent by any one host. Also helps solve problems more quickly, because failure domain for any problems is the same set of devices as thse in the same broadcast domain, and reduces workload for spanning treee protocol by limiting a VLAN to a singlec access switch. 
+
+## Multiswitch VLANS using trunking 
+### how to
+- simply configure each port to tell it the VLAN number to which the port belongs to
+- multiple switches you have to consider additional concepts about how to forward traffic between switches via VLAN trunking on links between switches
+- VLAN trunking
+   1. causes the switches to use a process called VLAN tagging
+   2. sending switch adds another header to the frame before sending it over the trunk
+   3. extra trunking header includes VLAN identifier (VLAN ID) field so that sending switch can associate frame with particular VLAN ID and receiving switch can then know in what VLAN each frame belongs
+- tunking allows switches to forward frames from multiple vlans over a sing physical connection by adding a small header to the ethernet frame. 
+
+
+STOPPED ON PAGE 194
+
+
+
+
+
+
+
+
+
 
 
 
