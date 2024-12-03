@@ -518,7 +518,6 @@ STOPPED ON PAGE 111
 - Late Collisions: subset of all collisions that happen after 64th byyte of frame, often point to a duplex mismatch
 
 # Ethernet Virtual Lans
-
 - switches 
    1. receve ethernet frames
    2. make decisions on Mac addresses, interface in which frame arrives and interface out which the switch forwards the frame.
@@ -547,15 +546,45 @@ STOPPED ON PAGE 111
    1. causes the switches to use a process called VLAN tagging
    2. sending switch adds another header to the frame before sending it over the trunk
    3. extra trunking header includes VLAN identifier (VLAN ID) field so that sending switch can associate frame with particular VLAN ID and receiving switch can then know in what VLAN each frame belongs
-- tunking allows switches to forward frames from multiple vlans over a sing physical connection by adding a small header to the ethernet frame. 
+- tunking allows switches to forward frames from multiple vlans over a sing physical connection by adding a small header to the ethernet frame
+
+## Inter Switch Link ISL and IEEE 802.1Q 
+- Trunking protocols
+- 802.1Q tags each frame with VLAN ID, with a extra 4 byte header into the origional frames etherent header, making it a 12 bit VLAN ID field supporting up a max of 212 VLANS but in practice supporting 4094 vlans
+- VLAN IDs are seperated into 2 ranges, normal (1 to 1005) and extended (1006 to 4094).
+- Extened range vlans are configured with VLAN Trunking Protocol VTP
+
+## Forwarding data between VLANS
+- LAN switches that forward data based on Layer 2 logic receive ethernet frames (layer 2 concept) look at destination Etherent MAC address (layer 2 address) and forward ethernet frame out some other interface. Layer 2 switches will not forward data between VLANs 
+
+## Routing patcks between VLANs with a router
+- devices in a VLAN need to be on the same subnet, devices in differnet VLANs need to be in different subnets 
+- to forward packets between VLANs, network must use devices that acts as a router, (whether thats a switch that can perform some functions like a router)
+- Devices that can perform Layer 3 routing functions called multilayer switch or Layer 3 Switch
+
+## Creating VLANs and assigning access VLANS to an interface 
+- switch must be configured to believe that VLAN exists in order to forward frames in a particular VLAN
+- must have non-trucking interfaces called access interfaces or static access interfaces assigned to the VLAN and or trunks that support the VLAN
+1. configure a new VLAN in config mode use `vlan vlan-d` command in global configuration mode to create the VLAN and to move the user into VLAN config mode
+2. optional, use the `name name` command in VLAN config mode to list a name ofr the VLAN. If not configured, the VLAN name is VLANZZZZ, where ZZZZ is the 4 digit decimal VLAN ID
+3. for each access interface, use `interface type number`command in global config mode to move into interface config mode for each desiered interface
+4. Use `switchport access vlan id-number` in command interface congif mode to specify the VLAN num associated with that interface
+5. optional, use `switchport mode access` command in interface conig mode to make this port always operate in access mode (to not trunk). 
 
 
-STOPPED ON PAGE 194
+## VLAN Trunking Protocol
+- turn off by using `VTP transparent mode` or `vtp mode tranparent` global command or `vtp mode off` 
+
+## VLAN trunking configuration 
+- `switchport mode trunk` and then create VLAN trunk that supported all VLANs known oto each switch
+### trunking administrative mode options with `switchport mode` command
+- `access` always ac as an access nontrunk port
+- `trunk` always act as a trunk port
+- `dynamic desirable` initiates negotiatin messages and respods to negotiation messages to dynamicallychose whether to start using trunking
+- `dynamic auto` passively waits to reciecve trunk negotiation messsages at which point the swithc will respond and negotiate whether to use trunking
 
 
-
-
-
+STOPPED AT 206 
 
 
 
