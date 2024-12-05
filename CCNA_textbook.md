@@ -580,26 +580,80 @@ STOPPED ON PAGE 111
 ### trunking administrative mode options with `switchport mode` command
 - `access` always ac as an access nontrunk port
 - `trunk` always act as a trunk port
-- `dynamic desirable` initiates negotiatin messages and respods to negotiation messages to dynamicallychose whether to start using trunking
+- `dynamic desirable` initiates negotiatin messages and respods to negotiation messages to dynamically chose whether to start using trunking
 - `dynamic auto` passively waits to reciecve trunk negotiation messsages at which point the swithc will respond and negotiate whether to use trunking
+- `show interfaces gigabit 0/1 switchport` to show if the initial (default) state is trunking or not
+- `show interfaces trunk` command lists information about all interfaces that currently operationally trunk, lists interfaces that curerently use VLAN trunking 
+- `switchport mode dynamic desirable` asks switch to both negotiate as well as to begin the negotiation process rather than waiting on the other device
+- `show interfaces gi0/1 switchport` will show output of intercaes like admin mode, operational mode and stuff
+- `show vlan id 2` shows info on the VLAN
+### expected trunking operational mode based on configured administrative modes 
+|  administrative mode  |  access   |     dynamic auto   |  Trunk | Dynamic desirable  |
+|  -------------------- |---------- |------------------  |------- |------------------  |
+|  access               |  access   |  access            |dont use|  access            |
+|  dynamic auto         |  access   |  access            |trunk   |  trunk             |
+|  trunk                |  dont use!|  trunk             |trunk   |  trunk             |
+|  dynamic desirable    |  access   |  trunk             |trunk   |  trunk             |
+- recommendes disabling trunk negotiation on most ports for better security, esp with ports without `switchport mode access`, like ports with statically configured to trunk with `switchport mode trunk` DTP still operates. disable DTP negotiations altogether using `switchport nonenegotiate` 
+
+## implementing interfaces connected to phones, data and voice LAN concepts
+- private branch exchange PBX  is connected to a IP phone with a port that also connects the PC
+- Data VLAN: same idea and config as access VLAN on a access port but defined as the VLAN on that link for forwarding traffic for the device connected to the phone onthe desk, like the users PC
+- Voice VLAN: VLAN defined on the link for forwarding the phones traffic. Traffic in this VLAN is typically tagged with a 802.1Q header. 
+### data and voice VLAN config and verification 
+- configuring a switch port to support IP phones with their planned voice and data VLAN IDs is easy.
+- making sence of `show` command is hard, as voice frames flow with the 802.1Q header 
+1. use `vlan vlan-id` command in global config mode to create the data and voice VLANs if they do not already exist on the switch
+2. configure the data VLAN like an access vlan as usual. A: use `interface type number` command in global config mode to move interface config mode. B: use `switchport access vlan id-number` command in interface config mode to define data VLAN. C: use `switchport mode access` command in interace config mode to make the port always operate in access mode (not trunk mode) 
+3. use `switchport voice vlan id-number` command in interface conf mode to set the voice VLAN ID
+- check the status of the data VLAN (access VLAN) and Voice VLAN by using `show interfaces switchport  for details about the access ports. 
+### key takeaways for IP telephony ports on switches
+- configure ports like normal access port to begin: config it as a static access port and assign it an access VLAN
+- add one more command to define the voice VLAN (`switchport voice vlan vlan-id`) 
+- look for mention of voice LVNA ID, butno other facs in the output of the `show interfaces type number switch` command
+- look for both the voice and data (access)  VLAN IDs in the outut of the `show interfaces type number` trunk command.
+- do not expect to see the port listed in the list of operational trunks as listed by the `show interfaces trunk` command
+
+## troubleshooting VLANs and VLAN trunks
+### steps
+1. confim correct access VLANs have been assigned
+2. confirm all vlans are both defined and active
+3. check allowed VLAN lists on both ends of each trunk to ensure all VLANs are intended to be used are included
+4. check for incorrect trunk config settings that result in one switch operating as a trunk, with neighboring switch not operating as a trunk
+5. check native VLAN settings on both ends of the trunk to ensure the settings match
+
+### 1. confim correct access VLANs have been assigned
+- commands that can find access ports and vlans
+
+|  exec command         | description                                                              |
+|--------------------   |------------------------------------------------------------  |
+| `show vlan brief` or `show vlan` | lists each VLAN and all interfaces assigned to that VLAN but not operational trunks   |
+|  `show vlan id number` | lists both acess and trunk ports in the vlan    |
+|  `show interfaces status` | on ports operating as access ports, it lists the access VLAN and on ports operating as trunk ports, it lists word trunk|
+| `show interfaces type number` or `number switchport` | identifies interfaces access VLAN and voice VLAN, plus the configured and operational mode (access or trunk) |
+| `show mac address-table` | lists MAC table entries, including associated VLAN     |
+- if the interface is assigned to the wrong VLAN, use the `switchport access vlan vlan-id` interface subcommand to assign the correct VLAN ID
+
+### enabling and disabling vlans on a switch
+- disable (`shutdown`)
+- enable (`no shutdown`) 
+- `no` or `shutdown vlan number` 
+### trunking issues
+- easily avoided by checking confugraion and by checking trunks operational state (mode) on both sides of the trunk by `show interfaces trunk` and `show interfaces switchport` 
+### how to identify which LVANS a particual trunk port currently supports
+1. `show interfaces interaface-id trunk` command lists info  only about operational trunks. this means the VLAN has not been removed from allowed VLAN list on the trunk as configured with `switchport trunk allowed vlan` interface subcommand, and the VLAN exists and is active on the local switch as seen in `show vlan` command and that the VLAN has not been VTP pruned from the trunk bc the swithc has dissabled VTP as seen in `sho spanning-tree vlan vlan-id` command. 
+2. `switchport trunk allowed vlan` method to administraivly limit VLANs whose traffic uses a trunk 
+3. `show interfaces trunk` command creates three separate lists of vlans. 
+
+|  list position  | heading         |  reasons                                                                                |
+|-----------------|-----------------|-----------------------------------------------------------------------------------------|
+|  first          |  vlans allowed  | vlans 1-4094 minsu those removed by `switchport trunk allowed` command                  |
+|  second         |  vlans allowd and active |  first list minus VLANs not defined to local switch, minus those VLANS in shutdown mode |
+|  third          |  vlans in spanning tree  |  second list, minus vlans in an STP blocking state for that interface, minus vlans VTP pruned from the trunk | 
+- it is possible to set native VLAN ID to different VLans on either end of the trunk using `switchport trunk native vlan vlan-id` command
 
 
-STOPPED AT 206 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+stopped at chapter 9 page 222
 
 
 
