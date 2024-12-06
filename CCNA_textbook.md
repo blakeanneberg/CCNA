@@ -655,5 +655,29 @@ STOPPED ON PAGE 111
 
 stopped at chapter 9 page 222
 
+# Spanning Tree Protocol 
+- STP allows ethernet LANs to have redundant links in a LAN while overcoming the known problems when adding those extra links, allows redundancy for when links fail.
+- RSTP rapid spanning tree protocol is used in more modern networks
+- STP and RSTP strike a balance allowing switches to block ports so that these ports do not forward frames with, but STP/RSTP does not block too many ports and frames have a short life and do not loop around the network indefinitely. 
+- ports are checked with as a noraml state for frames in a STP/RSTP `forwarding state` and a blocking `blocking state` which blocks all traffic 
+## Needing STP 
+- if no STV/RSTP some ethernet frames would loop around the network for a long time 
+- just one looping frame causes a braodcast storm when frames loop around a LAN indefinitely 
+### classes of problems caused by not using STP in redundant LANS
+1. broadcast storms: forwarding of a frame repeatedly on the same links, consuming significant parts of the links capacities
+2. MAC table instabiliites: continual updating of a switchs MAC address table with incorrect entries, in reaction to looping frames, resuliting in frames being sent to wrong locations
+3. multiple frame transmission: a side effect of looping frames in which multiple copies of one frame are delivered to the intended host, confusing the host
+### what STP does
+- STP/RSTP prevents loops by placing each switch port in either a forwardig state or a blocking state
+- interfaces in a forwarding state act as normal, forwarding and receving frames
+- interfaces in a blocking state do not process any frames except STP/RSTP messages
+- interfaces that block do not forward user frames, do not learn MAC addresses of received frames and do not process received user frames
+- "STP convergence" is process in which switches collectively realize that something has changed in the LAN topologoy and determine whether they need to change which ports block and which ports forward. 
+
+STOPPED AT PAGE 228
+
+
+
+
 
 
