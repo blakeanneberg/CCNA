@@ -673,10 +673,39 @@ stopped at chapter 9 page 222
 - interfaces in a blocking state do not process any frames except STP/RSTP messages
 - interfaces that block do not forward user frames, do not learn MAC addresses of received frames and do not process received user frames
 - "STP convergence" is process in which switches collectively realize that something has changed in the LAN topologoy and determine whether they need to change which ports block and which ports forward. 
+- term bridge and switch is synonymous 
+- spanning tree algorithm chosses interface that should be in forwardng statys, any other interafce not chose in in a blocking state. 
+### reasons for forwarding or blocking 
+|  characterization of port   |  STP state   |  Description             |
+|-----------------------------|--------------|--------------------------|
+|  all root switches ports      |  forwarding   |   root switch is always designated switch on all connected segments   |
+|  each nonroot switcs root port|   forwarding  |  lowest root cost, port though which switch has least cost to reach root switch   |
+|  each LANS designated port     | forwarding   |  switch forwarding the hello on the segment, lowest root cost, is designated switch for that segment|
+|  all other working ports    |  blocking    |  port is not used for forwardin user frames, nor are any frames received on these interfaces considered for forwarding |
 
-STOPPED AT PAGE 228
+### STP bridge ID and Hello BPDU
+- Bridge ID (BID) based on a MAC address in each switch
+- Bridge Protocol Data Units BPDU which switches use to exhancge info with each other switch
+- Hello BPDU lists many details in these BPDU messgages, includes the unique BID so swtiches can tell which switch sent wich hello BPDU
+- fields in the STP Hello BPDU
 
+|  field          |  description                       |
+|-----------------|------------------------------------|
+|  root bridge ID | bridge ID of the switch that the send of the Hello currently beleives to be root switch |
+|  senders bridge ID |  bridge ID of the switch sending this hello BPDU    |
+|  senders root cost |  STP/RSTP cost between this switch and current root |
+|  timer values on the root switch  |  includes the hello timer, MaxAge timer and forward delay timer |
 
+### elevcting the root switch
+- root switch is with the liwest numeric value for the BIDs
+- if there is a tie, the lowset switch MAC wins 
+
+### choosing each switchs root port 
+- second part of STP/RSTP process is for each non root switch chooses itone and only root port RP
+- a switchs RP is its interface thorough whicvh it has the least STP/RSTP cost to reach the root switch least root cost
+- default port costs
+|  ethernet speed | IEEE costs old  | IEEE Costs new |
+| 10 mbps |=
 
 
 
