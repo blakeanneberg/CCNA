@@ -703,10 +703,30 @@ stopped at chapter 9 page 222
 ### choosing each switchs root port 
 - second part of STP/RSTP process is for each non root switch chooses itone and only root port RP
 - a switchs RP is its interface thorough whicvh it has the least STP/RSTP cost to reach the root switch least root cost
-- default port costs
-|  ethernet speed | IEEE costs old  | IEEE Costs new |
-| 10 mbps |=
+- default port costs based on operating speed of the link, not the max speed
 
+|  ethernet speed | IEEE costs old  | IEEE Costs new  |
+|-----------------|-----------------|-----------------|
+| 10 mbps         |  100            |  2,000,000      |
+|  100 Mbps       |  19             |  200,000        |
+|  1 Gbps         |  4              |  20,000         |
+|  10 Gbps        |  2              |  2000           |
+|  100 Gbps       |  NA             |  200            |
+|  1 Tbps         |  NA             |  20             |
 
+### STP activity when the network remains stable
+1. root creates and sends out hello BPDU with root cost of 0, out all its working interfaces and those in a forwarding state
+2. nonroot swtiches receive hello on their root ports, after changing the hello to list their own BID as the senders BID and listening that switchs root cost, the switch forwards the Hello out all designated ports
+3. Steps 1 and 2 repeat every hello time until something changes 
 
+### STP Timers that manage STP convergence 
+- when a switch fails to receive a hello on its root port, it knwos there is a problem. if a switch fails to receve hellos or recieves a hello that lists a different detail, something had failed.  so the switch reacts and starts process of changing the spanning tree topology. 
+
+|  Timer |  Default value  |  Description                            |
+|---     |---              |---                                      |
+|  hello |  2 seconds      |  time between Helllos created by root   |
+|  MaxAge|  10 times Hello |  how long any switch should wait, after ceasing to hear hellows, before trying to change STP topology  |
+|  Forward delay  |  15 seconds  |  when interface changes from blocking to forwarding. Port stays in interim listening state, then interim learning state for num of secnds defined by forward delay timer |
+
+STOPPED ON 238 THIS IS A TEST
 
