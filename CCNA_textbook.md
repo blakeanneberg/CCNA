@@ -728,5 +728,37 @@ stopped at chapter 9 page 222
 |  MaxAge|  10 times Hello |  how long any switch should wait, after ceasing to hear hellows, before trying to change STP topology  |
 |  Forward delay  |  15 seconds  |  when interface changes from blocking to forwarding. Port stays in interim listening state, then interim learning state for num of secnds defined by forward delay timer |
 
-STOPPED ON 238 THIS IS A TEST
+### STP changing interface states 
+- Roles relate how STP analyzes Lan topology on weather to send or receve frames
+- forwarding state is faster transition than a blocking state
+- when a port that formerly blocked needs to transiition to forwarding, the switch puts port though two intermediate interfce states which help prevent temporarly loops
+1. Listening: state where the switch does not forward frames, switch removes old MAC addresses that no frames are received from
+2. Learning: do not forward frames, but switch begins to learn MAC addresses of frames recienved on the interface.
+- STP = from blocking --> listening --> learning --> forwarding state
+
+
+## Rapid Spanning Tree Protocol RSTP
+- react quickly: Each switch independently generates its own Hellos and RSTP allows for queries between neighbors rather than waiting on timers to expire as a means to avoid waiiting to learn info. 
+
+### Similarities with STP and RSTP 
+- wSTP and STP elect the root switch using same rules and tiebreakers
+- RSTP and STP switches select root ports with same rules
+- RSTP and STP elect designated ports on each LAN segment with same rules and tiebreakers
+- RSTP and STP place each port in either forwarding or blocking state, although RSTP calls the blocking state the discarding state 
+
+### RSTP avoids waiting for a timer to expire
+- RSTP allows for switch to replace root port without waiting to reach a forwarding state
+- RSTP adds a mechanism to replace designated port witout any waiting to reach a forwarding state 
+- RSTP lowers waiting times for case in which RSTP must wait for a timer `
+
+### Port rols in RSTP
+- Root port: nonroots switchses best path to the root
+- Alternate port: port that will be used to replace the root port when the root port fails
+- Designated port: switch port designed to forward onto a collision domain
+- Backup port: port that will be used to replace a desinganted port when a designated port fails
+- Disabled port: port in a nonworking interface state that is anything other than connected up/up 
+
+STOPPED ON PAGE 241
+
+
 
