@@ -733,12 +733,13 @@ stopped at chapter 9 page 222
 - forwarding state is faster transition than a blocking state
 - when a port that formerly blocked needs to transiition to forwarding, the switch puts port though two intermediate interfce states which help prevent temporarly loops
 1. Listening: state where the switch does not forward frames, switch removes old MAC addresses that no frames are received from
-2. Learning: do not forward frames, but switch begins to learn MAC addresses of frames recienved on the interface.
+2. Learning: do not forward frames, but switch begins to learn MAC addresses of frames received on the interface.
 - STP = from blocking --> listening --> learning --> forwarding state
 
 
 ## Rapid Spanning Tree Protocol RSTP
-- react quickly: Each switch independently generates its own Hellos and RSTP allows for queries between neighbors rather than waiting on timers to expire as a means to avoid waiiting to learn info. 
+- react quickly: Each switch independently generates its own Hellos and RSTP allows for queries between neighbors rather than waiting on timers to expire as a means to avoid waiting to learn info. 
+- RSTP avoids relying on timers. RSTP switches tell each other using messages that the topology has changed. Messages also tell switches to flush the contents of their MAC tabes in a way that removes all potentially loop causing entries without a wayt. 
 
 ### Similarities with STP and RSTP 
 - wSTP and STP elect the root switch using same rules and tiebreakers
@@ -748,17 +749,41 @@ stopped at chapter 9 page 222
 
 ### RSTP avoids waiting for a timer to expire
 - RSTP allows for switch to replace root port without waiting to reach a forwarding state
-- RSTP adds a mechanism to replace designated port witout any waiting to reach a forwarding state 
+- RSTP adds a mechanism to replace designated port without any waiting to reach a forwarding state 
 - RSTP lowers waiting times for case in which RSTP must wait for a timer `
 
-### Port rols in RSTP
-- Root port: nonroots switchses best path to the root
+### Port roles in RSTP
+- Root port: non roots switches best path to the root
 - Alternate port: port that will be used to replace the root port when the root port fails
 - Designated port: switch port designed to forward onto a collision domain
-- Backup port: port that will be used to replace a desinganted port when a designated port fails
+- Backup port: port that will be used to replace a designated port when a designated port fails
 - Disabled port: port in a nonworking interface state that is anything other than connected up/up 
 
-STOPPED ON PAGE 241
+### Port States Compared: STP and RSTP
+|  STP State   |  RSTP State     |  Function       |
+|---           |----             |----             |
+|  Disabled    |  Discarding     |  Port is not in a working (connected), either due to faullure or due to shutdown  |
+|  Blocking    |  Discarding     |  Stable state that ignores incoming data frames and is not sued to forward data frames  |
+|  Listening   |  Not Used       |  Interim state without MAC learning and without forwarding   |
+|  Learning    |  Learning       | Interim state with MAC learning and without forwarding |  
+|  Forwarding  |  Forwarding     |  Stable state that allows MAC learning and forwarding of data frames  | 
 
+### RSTP Port Types
+- Point to Point is one switch to another
+- Shared Port is like a hub with computers connecting to a switch
+- Point to point edge port is a switch to a computer. Hubs also force the attached switch port to use half duplex logic. RSTP assumes all half  duplex ports may be connected to hubs. 
 
+### RSTP features that make STP work better and more secure
+#### EtherChannel
+- prevents STP convergence from being needed when only a single port or cable failure occurs 
+- Combines multiple paralleel segments of eaqul speed (up to eight) between the same pair of switches. Switch treats it as a single interface with regard to STP.
+- All parallel links can be up and working simultaneously while reducing number of times STP must converge, making network more available
+
+#### PortFast
+- Switch ports that connect directly to endpoints rather than other switches eventually use the designated port DP role and a forwarding state. PortFast bypasses the proecess.
+
+ENDED ON 247
+#### BPDU Guard
+#### Root Guard
+#### Loop Guard
 
