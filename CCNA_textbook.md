@@ -1,4 +1,4 @@
-#TCPIP
+# TCPIP
 
 ## Networking architecture or network blueprint of TCPIP 
 - Define protocol via Requests for Comments RFC defines set of functions and specifics about implementation
