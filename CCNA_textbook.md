@@ -653,9 +653,9 @@ STOPPED ON PAGE 111
 - it is possible to set native VLAN ID to different VLans on either end of the trunk using `switchport trunk native vlan vlan-id` command
 
 
-stopped at chapter 9 page 222
 
 # Spanning Tree Protocol 
+
 - STP allows ethernet LANs to have redundant links in a LAN while overcoming the known problems when adding those extra links, allows redundancy for when links fail.
 - RSTP rapid spanning tree protocol is used in more modern networks
 - STP and RSTP strike a balance allowing switches to block ports so that these ports do not forward frames with, but STP/RSTP does not block too many ports and frames have a short life and do not loop around the network indefinitely. 
@@ -776,14 +776,35 @@ stopped at chapter 9 page 222
 ### RSTP features that make STP work better and more secure
 #### EtherChannel
 - prevents STP convergence from being needed when only a single port or cable failure occurs 
-- Combines multiple paralleel segments of eaqul speed (up to eight) between the same pair of switches. Switch treats it as a single interface with regard to STP.
+- Combines multiple parallel segments of equal speed (up to eight) between the same pair of switches. Switch treats it as a single interface with regard to STP.
 - All parallel links can be up and working simultaneously while reducing number of times STP must converge, making network more available
 
 #### PortFast
-- Switch ports that connect directly to endpoints rather than other switches eventually use the designated port DP role and a forwarding state. PortFast bypasses the proecess.
+- Switch ports that connect directly to endpoints rather than other switches eventually use the designated port DP role and a forwarding state. PortFast bypasses the process, after interface reaches a connected state, STP PortFAst immediately moves port to DP role and forwarding state without delay. 
+- PortFast exists to support access links connected to endpoints as the switch always wins DP election on those links because the endpoints do not use STP as they are usually single computers, phones and connected computers or a trunk connection to a server. .
+- PortFast ports should never connect to bridges or switches, because port ignores incoming BPDU always acts as a designated port and always forwards, creating a forwarding loop.
 
-ENDED ON 247
 #### BPDU Guard
-#### Root Guard
-#### Loop Guard
+- Cisco feature that helps defeat forwarding loop in a unexpected switch connects to a PortFast port, as it disables a port if it receives any BPDUs in the port. 
+- Only should be used on ports that should be used only as a access port, and never connected to another switch
+- often PortFast and BPDU Guard are enabled. 
 
+#### BPDU Filter 
+- discard (filter) STP BPDUs
+- can be used as a alternative to BPDU Guard when used with PortFast.
+- BPDU reacts to incoming BPDU's by disabling PortFast logic which creates the possibility of a forwarding loop and restoring normal STP logic on the port which prevents the possibility of a forwarding loop.  Then reverts to normal the STP rules. 
+- Can disable STP on a interface, discards all sent and received BPDU's on a interface.  
+- Enabling the Logic use `spanning-tree portfast bpdufilter defualt` then IPS finds all ports that currently use PortFast and enables conditional BPDU filter on those ports
+- Can use BPDU Filter to disable STP on a port. 
+
+#### Root Guard
+- Monitors incoming BPDU on a port and reacts if the received BPDU would change the root switch in the VLAN.
+- Enabled by port, enables the port to operate normally with STP except in one special case, when it receives a superior BPDU in the port. 
+- Enable Root Guard on a ports connected to other switches, usually trunks, and STP works normally. But also prevents election of a different root switch that is reachable though the port by using a "broken state". Root Guard recovers the port automatically when the superior Hellos nor longer occurs. 
+-Choice of Root Guard begins with close analysis of topology, on which switches should never become root and which ports should never receive superior BPDU's 
+#### Loop Guard
+- Portects against specific case in a STP topology, protect the worst priority switch (highest BID) in a STP design
+- Loop Guard protect against a class of failures that without Loop Guard, results in in one switch link becoming a DP.
+- If the port is a root or alternate port, prevent it from becoming a designeated port by moving it to the special broken STP state. 
+- Only really need it on fiber-optic links connected to other switches. 
+- Loop Guard relies on underlying facts: 1. A switch with the Worst (highest) priority in a design has switch to switch ports in the root ort (RP) and alternate port (ALT) roles but seldome the designeded port DP role. Those same ports normally receive Hellos every Hello time becuase each links neighboring switch is the DP. A Uniderectional link can occure, in which interface stae remains up (connected) on both ends but frames cannot flow in one direction. 

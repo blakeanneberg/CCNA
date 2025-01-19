@@ -1,6 +1,7 @@
 # I like CCNA more than Network+.
+Feels alot more appliciable and functional when its rooted in an acutal application. Not just all theory.  
 
-## Lets sub divide the network... aka subnetting!
+Lets sub divide the network... aka subnetting!
 
 ## A network is something you subdivide into useful subnets. 
 
@@ -12,7 +13,7 @@
 4. Multiples of 8, 16, 32
 5. Other charts
 6. Address Class Key
-| Range of first Octets | Class | # of Network Octets | # host Octets | Default Masks | 
+| Range of first Octets | Class | number of Network Octets | number host Octets | Default Masks | 
 |-----------------------|-------|---------------------|---------------|---------------|
 | 1..126		|A	|1 		      |3	      | 255.0.0.0     |
 | 128..191		|B	|2		      |2 	      | 255.255.0.0   |
@@ -31,7 +32,7 @@
 | 96* 			| 224*	|
 | 112			| 240	| 
 8. Nine DDN mask values and magic numbers
-|Decimal Octet Value	|Magic Number	| Binary	| # of binary 1s	|
+|Decimal Octet Value	|Magic Number	| Binary	| number of binary 1s	|
 |-----------------------|---------------|---------------|-----------------------|
 | 0			| 256		| 00000000	| 0			|
 | 128			| 128		| 10000000	| 1			|
