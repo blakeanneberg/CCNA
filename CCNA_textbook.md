@@ -147,6 +147,7 @@
 - term is fact that the telco leases the use of the leased line to a customer but the customer does not permanently own the line
 - Data link protocols of High Level Data Link Control HDLC and Point to Point Protocol, 
 1. HDLC fram can only go to one destination device (router on other end) so destination is implied in address field.
+
 |  HDLC and PPP Fields frame form   |  Ethernet Equivalent     |  Description    |
 |-----------------------------------|--------------------------|-----------------|
 |  Flag                             |  Preamble SFD            | pattern to show a new frame is arriving  |
@@ -244,6 +245,7 @@
 ## Accessing Cisco Catalyst Switch CLI
 - UTP 10/100/1000 meaning unshielded twisted pair 10BASE-T (10 Mbps), 100BASE-T (1000 Mbps), or 1000BASE-T (1 Gbps) no matter the current speed used on the interface
 - Interface IDs to identify specific ports
+
 |  Speeds Supported  | Common Name  | Example Switch Interface ID | Valid Abbreviations | 
 |---                 |---           |---                          |---                 |
 |  10 Mbps           |Ethernet      |ethernet0/0                  |E0/0,Et0/0, Eth0/0  |

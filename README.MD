@@ -13,6 +13,7 @@ Lets sub divide the network... aka subnetting!
 4. Multiples of 8, 16, 32
 5. Other charts
 6. Address Class Key
+
 | Range of first Octets | Class | number of Network Octets | number host Octets | Default Masks | 
 |-----------------------|-------|---------------------|---------------|---------------|
 | 1..126		|A	|1 		      |3	      | 255.0.0.0     |
@@ -20,7 +21,9 @@ Lets sub divide the network... aka subnetting!
 | 192..223		|C	|3		      |1	      | 255.255.255.0 |
 | 224..239		|D 	|NA		      |NA	      |NA	      |
 | 240..255		|E 	|NA		      |NA	      |NA	      |
+
 7. Multiples of 8, 16, 32
+
 | Multiples of 16 	| 32* 	|
 |-----------------------|-------|
 | 0* 			| 128*	|
@@ -31,7 +34,9 @@ Lets sub divide the network... aka subnetting!
 | 80			| 208	| 
 | 96* 			| 224*	|
 | 112			| 240	| 
+
 8. Nine DDN mask values and magic numbers
+
 |Decimal Octet Value	|Magic Number	| Binary	| number of binary 1s	|
 |-----------------------|---------------|---------------|-----------------------|
 | 0			| 256		| 00000000	| 0			|
