@@ -245,7 +245,6 @@
 ## Accessing Cisco Catalyst Switch CLI
 - UTP 10/100/1000 meaning unshielded twisted pair 10BASE-T (10 Mbps), 100BASE-T (1000 Mbps), or 1000BASE-T (1 Gbps) no matter the current speed used on the interface
 - Interface IDs to identify specific ports
-
 |  Speeds Supported  | Common Name  | Example Switch Interface ID | Valid Abbreviations | 
 |---                 |---           |---                          |---                 |
 |  10 Mbps           |Ethernet      |ethernet0/0                  |E0/0,Et0/0, Eth0/0  |
@@ -810,3 +809,37 @@ STOPPED ON PAGE 111
 - If the port is a root or alternate port, prevent it from becoming a designeated port by moving it to the special broken STP state. 
 - Only really need it on fiber-optic links connected to other switches. 
 - Loop Guard relies on underlying facts: 1. A switch with the Worst (highest) priority in a design has switch to switch ports in the root ort (RP) and alternate port (ALT) roles but seldome the designeded port DP role. Those same ports normally receive Hellos every Hello time becuase each links neighboring switch is the DP. A Uniderectional link can occure, in which interface stae remains up (connected) on both ends but frames cannot flow in one direction. 
+
+# RSTP and EtherChannel configuration 
+- layer 2 EtherChannels
+- Distribution switces: are usually root, do not connect to endpoints but rather connect to each access switch.
+- Access switch: are switches connected to endpoint devices 
+- Uplink: are swithc to switch links, usually trunks between access and distribution switches. 
+
+## STP Standards and Config options
+- Per VLAN Spanning Tree Plus (PVST+) and Rapid PVST+ (RPVST+) and creates one spanning tree instance per VLAN
+- `spanning-tree mode` keywords below:
+
+|  Name  | Based on STP or RSTP |  # Trees  | Original IEEE Standard   |  Config Parameter  |
+|---     |---                   |----       |----                       |------              |
+|  STP   |  STP                  | 1 CST     |802.1D                    | NA                 |
+|  PVST+ |  STP                  | 1/VLAN    |802.1D                    | pvst               |
+|  RSTP  |  RSTP                 | 1 CST     |802.1w                    | NA                 |
+|  Rapid PVST+ | RSTP            | 1/VLAN    | 802.1W                   | rapid-pvst         | 
+|  MSTP        | RSTP            | 1 or more | 802.1s                    | MST               |
+
+## Bridge ID and System ID extension
+- Part of RSTP and MSTP 802.1Q standard which defines VLANS and LAN trunking 
+- refined format of the original BID value to help make per-VLAN instances of STP/RSTP become a reality. BID used to be switches 2-byte priority and its 6 byte MAC address, but now use 4 bit prirotiy field and a 12 bit subfield called system ID extension which represents the VLAN ID
+- System ID Extension (MAC addres Reduction)
+
+| 4 Bits |  12 Bits  | 6 Bytes   |
+|--------|-----------|-----------|
+|  Prioity Multiple of 4096 | System ID Extnsion (typically holds VLAN ID) |   System ID (MAC address) |
+
+- `spanning-tree vlan *vlan-id* prioity *x*` reqires a decimal number betwenen 0 and 65,535, but modern use of the field reserves te final 12 bits for VLAN ID to only be multipls of 4096. 
+
+## Identifying Switch priority and root switch
+- example of a 16 bit priority 1000 0000 0000 1001 as VLAN ID is 0000 0000 1001 and Configured priority is a 10 bit binary equilvent at 1000 0000 0000 0000 
+
+stopped on 263
