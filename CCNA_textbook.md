@@ -686,7 +686,7 @@ STOPPED ON PAGE 111
 
 ### STP bridge ID and Hello BPDU
 - Bridge ID (BID) based on a MAC address in each switch
-- Bridge Protocol Data Units BPDU which switches use to exhancge info with each other switch
+- Bridge Protocol Data Units BPDU which switches use to exchange info with each other switch
 - Hello BPDU lists many details in these BPDU messgages, includes the unique BID so swtiches can tell which switch sent wich hello BPDU
 - fields in the STP Hello BPDU
 
@@ -837,9 +837,33 @@ STOPPED ON PAGE 111
 |--------|-----------|-----------|
 |  Prioity Multiple of 4096 | System ID Extnsion (typically holds VLAN ID) |   System ID (MAC address) |
 
-- `spanning-tree vlan *vlan-id* prioity *x*` reqires a decimal number betwenen 0 and 65,535, but modern use of the field reserves te final 12 bits for VLAN ID to only be multipls of 4096. 
+- `spanning-tree vlan *vlan-id* prioity *x*` reqires a decimal number betwenen 0 and 65,535, but modern use of the field reserves te final 12 bits for VLAN ID to only be multiples of 4096. 
 
 ## Identifying Switch priority and root switch
-- example of a 16 bit priority 1000 0000 0000 1001 as VLAN ID is 0000 0000 1001 and Configured priority is a 10 bit binary equilvent at 1000 0000 0000 0000 
+- example of a 16 bit priority 1000 0000 0000 1001 as VLAN ID is 0000 0000 1001 and Configured priority is a 10 bit binary equivalent at 1000 0000 0000 0000 
+- `Te` is Ten-GigabitEthernet 
+- seeing a result of `protocol rstop` coccures when using PVST+ per `spanning-tree mode rapid-pvst` global command
 
-stopped on 263
+## Switch Priority using root primary and secondary
+- configure switches to be most likely root switches: `spanning-tree vlan *x* root primary` as primary and `spanning-tree vlan *x* root secondary`  and secondary and is stored priority setting in the `spanning-tree vlan *x* priority *value*` command 
+
+## RSTP (one tree) and RPVST+ (one tree per vlan) 
+-RSTP behaves as if VLAN do not exist, while Ciscos RPVST+ integrates VLAN info into the entire processs
+- RSTP creates one tree, common spanning tree CST, while RPVST+ creates one tree for each and every VLAN
+- RSTP sends one set of RSTP messages (BPDU's) in the network, RPVST+ sends one set of messages per VLAN
+- RSTP sends messages to multicast add 0180.0CC.CCD per IEEE standards, and RPVST+ uses multicast add 0100.0CCC.CCCD add chosen by cisco
+- On VLAN trunks, RSTP sends all BPDUs in the native VLAN without a VLAN header/tag. RPVST+ sends BPDUs for each VLAN respectivly
+- RSTP sets the BID's VLAN field (extended system ID) value to 00000.0000.0000 meaning to 'no vlan' while RPVST+ uses VLAN ID
+
+## Identifying Port cost, role and state 
+- use `show spanning-tree vlan 9` to show all facts 
+
+## Other Optional STP features
+
+### PortFast and BPDU guard
+- PortFast is useful but also risky. `spanning-tree portfast`
+- Use PortFast with BPDU guard to prevent loops by disabling the port if any BPDUs arrive in the port
+- `spanning-tree bpduguard enable` interface subcomand applies BPDU guard logic to the port regardless of whether PortFast is used,  
+- BPDU guard triggered when any BPDU arries in a port that has BPDU Guard enabled. IOS places interface into error disabled interface state and STP removes the interface from the STP instance. It recovers by being configured with a `shutdown` command and thena `no shutdown command`. 
+
+STOPPED on page 271
