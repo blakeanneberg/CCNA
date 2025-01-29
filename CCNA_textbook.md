@@ -866,4 +866,44 @@ STOPPED ON PAGE 111
 - `spanning-tree bpduguard enable` interface subcomand applies BPDU guard logic to the port regardless of whether PortFast is used,  
 - BPDU guard triggered when any BPDU arries in a port that has BPDU Guard enabled. IOS places interface into error disabled interface state and STP removes the interface from the STP instance. It recovers by being configured with a `shutdown` command and thena `no shutdown command`. 
 
-STOPPED on page 271
+### PortFast on VLAN Trunks and Voice Pseudo-Trunks
+- IOS supports PortFast on trunk ports, but do not use PortFast on trunk ports connected to other switches, but use it on trunk ports connected to endpoints IE 
+
+### Global Config of PortFast and BPDU guard 
+- `spanning-tree portfast default` global default, apply conditional logic, to enable portfast on ports operating as access ports only. Ignore ports configured to disable PortFast with`spanning-tree portfast disable ` interface subcommand
+- `spanning-tree portfast bpduguard default` to enable BPDU guard on ports currently use PortFast, ignore ports configured to disable BPDU guard with `spanning-tree bpduguard disable` interface subcommand.
+- `show` command will show whether or not a gloabl configuration command happened. anything with "by default" will be a global command. 
+
+### BPDU filter 
+
+#### Conditional BPDU filtering with global config
+- Need to toggle from default global set of `no spanning-tree portfast bpdufilter enable` to same command with no option: `spanning-tree portfast bpdufilter enable` to enable BPDU filter on ports that currently use PortFast, and ignre ports configured to disable BPDU fitler with `spanning-tree bpdufilter disable` interface subcommand
+- the word `Edge` confimes that the port currently uses Portfast. 
+
+#### Disabling STP with BPDU filter interface configuration 
+- `spanning-tree bpdufilter enable` filters all outgoing and incoming BPDUs on a port, in effect disabling STP on the interface. This can create a forwarding loop that makes the entire LAN unusable
+- `show spanning-tree interface shows` will show if BPDU filter is applied. 
+
+### Root Guard
+- consider only ports connected to other switches. Root Guard monitors for incoming superior Hellos, disabling the port when that occures. 
+- `spanning-tree guard root` with no global command to change the dufault with the default being not to use Root guard on the interface. 
+- Actions occure per VLAN based on the VLAN of the superior Hello
+- STP places the port in a broken BRK state for that VLAN, which discards all traffic
+- STP describes the port as being in a root inconsistent state in the port type infomation in show commands
+
+### Loop Guard
+- `spanning-tree guard loop` interface subcommand to enable Loop Guard on the interfaces seclected
+- To use global defualt `spanning-tree loopguard default` global command to change Loop Guard default from disbabled to enabled on all port to point switch  interfaces
+- use `no spanning-tree guard loop` interface subcomand to disbale loop guard on interfaces selected
+- `show spanning-tree interface` command confirms that loop guard is enabled with apsence of "by default" phrase implying it was configured using an interface subcommand 
+
+## Configuring Layer 2 EtherChannel
+- two neighbroing switches can treat multiple parallel links between each other as a single logical link called an etherchannel. without etherchannel a switch treates each physical port as an independent port applying MAC learning, forwarding and STP logic per physical port. 
+- with EthernChannel the switch applies all those same processes to a group of phycial ports as one entiti
+- without EtherChannel the parallel links between two switches, STP/RSTP would block all links except one, but with EtherChannel switch can use all links, load balanceing 
+- EtherChannel is tuff. 
+
+
+stopped on page 281
+
+
