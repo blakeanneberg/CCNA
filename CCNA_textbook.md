@@ -902,8 +902,13 @@ STOPPED ON PAGE 111
 - with EthernChannel the switch applies all those same processes to a group of phycial ports as one entiti
 - without EtherChannel the parallel links between two switches, STP/RSTP would block all links except one, but with EtherChannel switch can use all links, load balanceing 
 - EtherChannel is tuff. 
+### Manual config Layer 2 EtherChannel
+- So all ports always attempt to be part of the channel, simply add the correct channel-group configuration command to each physical interface, on each switch all with the `on` keyword and all with the same number with: `channel-group *number* mode on`   
+- Use same number for all commmands on the same switch, but the channel-group number on the neighboring switch can differ
+- EtherChannel = PortChannel = Channel-group
+- To display status use the `show etherchannel` command lists basic configuration info about the channel 
+- `show etherchannel summary` command provides status info,  
 
-
-stopped on page 281
+stopped on page 284 
 
 
