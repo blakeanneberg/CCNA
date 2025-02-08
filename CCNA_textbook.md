@@ -909,6 +909,13 @@ STOPPED ON PAGE 111
 - To display status use the `show etherchannel` command lists basic configuration info about the channel 
 - `show etherchannel summary` command provides status info,  
 
+### Configuring Dynamic Ether Channels 
+- IEEE standard Link Aggregation Control Protocol LACP and Cisco Catalyst switch Port Aggregation Protocol PAgP. Both negotiate so that only links that pass the configuration checks are actually used in an EtherChannel. Config enables a protocol for a particular channel group number. 
+- `channel-group` configuration command to configure each protocol.LACP uses `active` and `passive` and LAgP uses `desirable` and `auto` keywords to start at least one side to begin the negoiations.Example `channel-group 1 mode active` and `channel-group 2 mode passive`   
 stopped on page 284 
 
-Test
+### Interface Configuration Consistency with EtherChannels 
+- Before using a physical port in a dynamic Ether Channel, the switch compares the new physical ports config to the existing ports in the cahnnel. It checks, Speed, Duplex, Operational Access or Trunking (all must be access or all must be trunking), if access port the access VLAN, if trunk port the allowed VLAN (per the `switchport trunk allowed` command), and if a trunk port the native VLAN. 
+
+Stopped on page 289
+
