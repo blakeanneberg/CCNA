@@ -917,5 +917,7 @@ stopped on page 284
 ### Interface Configuration Consistency with EtherChannels 
 - Before using a physical port in a dynamic Ether Channel, the switch compares the new physical ports config to the existing ports in the cahnnel. It checks, Speed, Duplex, Operational Access or Trunking (all must be access or all must be trunking), if access port the access VLAN, if trunk port the allowed VLAN (per the `switchport trunk allowed` command), and if a trunk port the native VLAN. 
 
-Stopped on page 289
+### EtherChannel Load Distribution AKA Load Balancing 
+- when using Layer 2 EtherChannels a switchs MAC learning Process associates MAC address with the PortChannel interfaces and not underinglany Physiacal port 
 
+Stopped on 289
