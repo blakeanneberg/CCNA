@@ -919,5 +919,30 @@ stopped on page 284
 
 ### EtherChannel Load Distribution AKA Load Balancing 
 - when using Layer 2 EtherChannels a switchs MAC learning Process associates MAC address with the PortChannel interfaces and not underinglany Physiacal port 
+- `port-channel load-balance` method global command, 
+- To cause all messages in a single applicatio n flow to use same link in channel
+- To integrate load distribution algo to work in to the hardware forwarding ASIC
+- To use all active links in the EtherChannel, adjusting to addition and removal of active links over time.
+- Within constraints of other goals, balances traffic across those active links
+- Algos first intended to avoid message reprdring, make use of switch forwaridng ASIC and use all active links. Load distribution methods:
 
-Stopped on 289
+|  Configuration keyword   |  Math uses...   |  Layer |
+|----------------|----------------|----------------------------|
+|  src-mac                 | Source MAC address |  2  |
+|  dst-mac  |  Destination MAC address |  2  |
+|  src-dst-mac |  Both sources and destination MAC |  2  |
+|  src-ip   |  Source IP address  |  3   |
+|  dst-ip  |   destination ip address  |  3  | 
+|  src-dst-ip  |  both source and destination ip   |  4  |
+|  src-port |  srouce TCP or UDP port  |  4  |
+|  dst-port |  destination TCP or UDP port   |  4  |
+|  src-dst-port   |  both source and destination TCP or UDP port  |  4  |
+
+- Example: with load distribution method of `src-mac` meaning source MAC address, all frames with same MAC address flow over one link
+- Algo focues on low order bits in the fields in the headers becuase the low order bits typically differ the most in real networks. 
+- Whatever method you choose, method identifies filds in the message headers. 
+
+
+
+
+STOPPED on page 300
