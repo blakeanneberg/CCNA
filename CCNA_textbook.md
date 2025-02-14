@@ -943,6 +943,25 @@ stopped on page 284
 - Whatever method you choose, method identifies filds in the message headers. 
 
 
+# Subnetting!!! 
+
+## Analye Subnetting and Addressing Needs
+1. Anaze needs: number of subnets, number of hosts/subnet and 1 size subnet
+2. Design subnets: Choose Network, Choose 1 mas, list all subnets.
+3. Plan implementation: Subnets --> Locations, Static IP, DHCP Ranges
+4. Which hosts sould be grouped together into a subnet?
+5. How many subnets does this internwork require? 
+6. How many host IP addresses does each subnet require?
+7. Will we use a single subnet size for simplicity or not?
+
+## Subnet Rules
+- Addresses in the same subnet are not separated by a router
+- Addresses in different subnets are separated by at least one router. 
+- Have at least one subnet for every: VLAN, point to point serial link, Ethernet WAN Ethernet Line Service
+
+## Determining the number of hosts per subnet
+- Engineer assigns each subnet a subnet mask, which defines the size of that subnet. Mast sets aside a number of host bits whose purpose is to number different host IP addresses in that subnet 
+- 2 reservations the lowest value for the subnet number and the numerically highest value as the subnet broadcast address 
 
 
-STOPPED on page 300
+Stopped on page 308
