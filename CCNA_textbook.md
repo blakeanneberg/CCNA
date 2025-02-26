@@ -963,5 +963,35 @@ stopped on page 284
 - Engineer assigns each subnet a subnet mask, which defines the size of that subnet. Mast sets aside a number of host bits whose purpose is to number different host IP addresses in that subnet 
 - 2 reservations the lowest value for the subnet number and the numerically highest value as the subnet broadcast address 
 
+### Multiple Subnet Sizes Variable Length Subnet Masks
+- a design that usess more than one mask in different subnets of the smae class A, B or C network.
 
-Stopped on page 308
+## Design Subnets choose a classful network
+- classfull IP networks 
+- Private IP networks
+- Public IP networks 
+- Network Address Translation: possible for companies to re-use same IP addresses, by translating the OP address inside the packets as they go from enterprise to the internet, using a small number of public IP addresses to support many private IP addresses 
+
+### Private IP Networks 
+- Class of Private networks
+| Class of Networks  | Private IP networks         | Number of networks |  Number of addresses  |
+|--------------------|-----------------------------|--------------------|-----------------------|
+| A                  | 10.0.0.0                    | 1                  |  2^24 - 2 = 16,777,214|
+| B                  | 172.16.0.0-171.31.0.0       | 16                 |  2^16 - 2 = 65,534    |
+| C                  | 192.168.0.0-192.168.255.0   | 256                |  2^8 - 2 = 254        | 
+
+### Choosing the Mask
+- Number of subnets required
+- Number of hosts/subnet required
+- That a choice was made to use only one mask for all subnets so that al subnets are the same size (same number of hosts/subnets)
+- The Classful IP network number that will be subnetted
+- IP networtworks before subnetting has a network part (the addresses have the same value in the network) and the host part (the addresses have different values in the host part) 
+Example: N=8, H=24
+Example: N=16, H=16
+Example: N=24, H=8
+- the subnet part is in the middle, and borrows bits from the host part. N + S + H = 32
+
+STOPPED AT PAGE 316
+
+
+
