@@ -991,7 +991,12 @@ Example: N=16, H=16
 Example: N=24, H=8
 - the subnet part is in the middle, and borrows bits from the host part. N + S + H = 32
 
-STOPPED AT PAGE 316
+### Choosing Enough Subnet and Host Bits
+- What number of subnets and hosts per each subnet are required? 
+- Bits in the subnet create a way to uniquely number the different subnets that you want. with three subnet bits it would be 2^3 or 8 subnets.
+- Number of subnet bits must be large enouhg to uniquely number all the subnets 
+- After Subnet is decided, focus on hosts bits which must be large enough to number the host IP addresses in the largest subnet 
+- the Single mask must support both required number of subnets and required number of hosts in the largest subnet. 
+- 
 
-
-
+STOPPED ON PAGE 317
