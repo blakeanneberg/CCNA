@@ -997,6 +997,19 @@ Example: N=24, H=8
 - Number of subnet bits must be large enouhg to uniquely number all the subnets 
 - After Subnet is decided, focus on hosts bits which must be large enough to number the host IP addresses in the largest subnet 
 - the Single mask must support both required number of subnets and required number of hosts in the largest subnet. 
+:-) 
+
+### Masks and Mask formats
+- subnet mask gives engineeri way to communicate design choices of network, subnet and host on network. 
+- subnet mask is 32 bit binary number with number of binary 1s on left and with binary 0s on the right
+- number of binary 0s equal number of host bits, 
+- number of first 1s represent the combined network and subnet parts of the address
+- Network --> Subnet part --> host part 
+
+### Building a list of subnets
+- subnet number: called subnet ID or subnet address, this identifies the subnet. it is the numerically smallest number in the subnet, cant be used as ip address by a host
+- subnet braodcast: called subnet broadcast address or directed broadcast address, this islast numerically highest number in the subnet, also cant be used as an ip address by a host
+- IP address: all numbers between subnet ID and subnet broadcast address, can be used as host ip address
 - 
 
-STOPPED ON PAGE 317
+stopped at top of 320 
