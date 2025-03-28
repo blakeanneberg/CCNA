@@ -1012,4 +1012,9 @@ Example: N=24, H=8
 - IP address: all numbers between subnet ID and subnet broadcast address, can be used as host ip address
 - 
 
-stopped at top of 320 
+## Plan the implementation 
+- Assigning subnets to different locations: look at your network diagram, identify each location that needs a subnet, pick one form table made of possible subnets, track it in spreadsheet or some other purpose built subnet planning tool.  
+- Static and dynamic ranges (DHCP) per subnet, often separating static IP addresses on one end of each subnet, DHCP addresses on the other. 
+- DHCP server must be told the subnets for which it assigns ip addresses in the subnet, like .101 to .254 and then manual assign static addressees from lower end .1 to .100
+
+
