@@ -1012,9 +1012,67 @@ Example: N=24, H=8
 - IP address: all numbers between subnet ID and subnet broadcast address, can be used as host ip address
 - 
 
-## Plan the implementation 
-- Assigning subnets to different locations: look at your network diagram, identify each location that needs a subnet, pick one form table made of possible subnets, track it in spreadsheet or some other purpose built subnet planning tool.  
+### Plan the implementation 
+- Assigning subnets to different locations: look at your network diagram, identify each location that needs a subnet, pick one form table made of possible subnets, track it in spreadsheet or some other purpose built subnet planning tool.  "
 - Static and dynamic ranges (DHCP) per subnet, often separating static IP addresses on one end of each subnet, DHCP addresses on the other. 
 - DHCP server must be told the subnets for which it assigns ip addresses in the subnet, like .101 to .254 and then manual assign static addressees from lower end .1 to .100
 
+
+## Analyzing Classful ipv4 Networks 
+
+- When operating a netowrk, investigating a problem based on an IP address and Mask. IP address alone can determine several facts about Class, A, B or C network in which the IP address resides
+- Classful IP networks just refer to Class A, B and C networks  is old when everyone thought that every comapny can use a public IP network in one of the three clases. 
+- CIDR block: 
+- Unicast IP address: 
+
+### Class A, B or C
+- Identify the class and other facts can be derived
+
+|  Class |  First octet values   |  Purpose  |
+|-----   |------------           |  -----    |
+|A       |1-126                  |Unicast (large network |
+|B       |128-191                |Unicast (medium sized networks  |
+|C       |192-223                |Unicast (small networks)  |
+|D       |224-239                |Multicast  |
+|E       |240-255                |Reserved (formerly experimental)   |
+
+- Key facts for Classes A, B and C
+
+| info      |  Class A    |   reserved  | Class B      |  Class C     |
+|-----      |-------      |----------| -------       |-----------   |
+| Zeros              | 0.0.0.0|        |              |              |
+| First octet range  |  1-126 |  127   |  128-191     |  192-223     |
+| valid network #s   |1.0.0.0-126.0.0.0   | 127.0.0.0-127.255.255.255  |128.0.0.0-191.255.0.0  |192.0.0.0-223.255.255.0   |
+| Total networks     |2^7-2=126           |  |  2^14=16384       |2^21=2097152  |
+| Hosts per network  |2^24-2              |  |2^16-2           |2^8-2         |
+| Octets (bits) in network part   | 1(8)  | |2 (16)           |3 (24)        |
+| Octets (bits) in host part   | 3(24)    |   |2 (16)           |1 (8)        |
+| Default Mask       | 255.0.0.0 |  |  255.255.0.0 |  255.255.255.0 |
+
+- Size of Class A, B and C networks
+
+|  Class |  Networks | Host/Network |
+|-----   |---------  |-----------   |
+|A       |126        |16,777,214    |
+|B       |16,284     |65,534        |
+|C       |2,097,152  |254           |
+
+
+
+STOPPED ON PAGE 330
+
+
+### Default Mask
+
+### Number of Network octets/bits
+
+### Number of host octets/bits
+
+### Number of host addresses in the network
+
+### Network ID
+
+### Network Broadcast Address
+
+### First and last usable addresses in the network 
 
