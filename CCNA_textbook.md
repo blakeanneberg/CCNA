@@ -1058,11 +1058,22 @@ Example: N=24, H=8
 |C       |2,097,152  |254           |
 
 
-
-STOPPED ON PAGE 330
-
+### Address formats:
+- Network Part, addresses in same network have same values
+- Host Part, addressses in the same network have different values
 
 ### Default Mask
+- each network class has an associated default mask that defines the size of the network and host parts of an unsubnetted Class A, B and C netowkr
+- EX class A default mask is 255.0.0.0 in binary is 11111111 00000000 00000000 00000000 network is 8 and host is 24
+- EX class B default mask is 255.255.0.0 in binary is 11111111 11111111 00000000 00000000 network is 16 and host is 16 
+- EX class C default mask is 255.255.255.0 in binary is 11111111 11111111 1111111 00000000 network is 24 and host is 8 
+
+### Number of hosts per network 
+- 2^h-2 where H is the number of host bits
+- Host bits exist for purpose of giving each host a unique IP addreses
+
+
+STOPPED ON PAGE 331
 
 ### Number of Network octets/bits
 
