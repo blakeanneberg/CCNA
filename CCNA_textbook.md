@@ -1082,8 +1082,48 @@ STOPPED ON PAGE 331
 ### Number of host addresses in the network
 
 ### Network ID
+- All found in the IP addressb
+- Network number (identitifes the network) is the lowest number and cannot be given out as a IP address 
+- First (numerically lowest) usable address
+- Last (numerically highest) usable address 
+- Network braodcast adddress, used as a destination address in a packet and the routers would forward a copy of that one packet to all hosts in the classful network. 
+- The steops to find network number and network broadcast address etc
+1. Determin the class A, B or C based on the first octet 
+2. Mentally divide the netowkr and host octets based on the class
+3. To find the network number, change the IP address's host octets to 0
+4. To find the first address, add 1 to the fourth octet of the Network ID
+5. To find the broadcast address, change the network IDs host octets to 255
+to find the last address, subtract 1 from the fourth octet of the network broadcast address 
+- The above in a table, Example Class A network 10.17.18.21:
+
+|  Network  |  Host  |
+|-----------|------- |
+|Class A    |        | Step 1
+|Split network| and hosts| Step 2
+|10.         |17.18.21| 
+|10.         |0.0.0   | Step 3 
+|10.         |0.0.1   | Step 4
+|10.         |255.255.255| Step 5 
+|10.        |255.255.254| Step 6
+
+- Example Class B network 172.16.8.9: 
+
+|  Network  |  Host  |
+|-----------|------- |
+|Class B    |        | Step 1
+|Split network| and hosts| Step 2
+|172.16.         |8.9 | 
+|172.16.        |0.0   | Step 3 
+|172.16.        |0.1   | Step 4
+|172.16.        |255.255| Step 5 
+|172.16.        |255.254| Step 6
 
 ### Network Broadcast Address
 
 ### First and last usable addresses in the network 
 
+## Unusual Network IDs and Network Broadcast Addresses 
+- Class A: 0 to 127 are reserved, and 127.0.0.1 is loopback address
+- Class B: Range from 128.0.0.0 to 191.255.0.0 
+
+STOPPED ON PAGE 334
