@@ -1028,11 +1028,11 @@ Example: N=24, H=8
 ### Class A, B or C
 - Identify the class and other facts can be derived
 
-|  Class |  First octet values   |  Purpose  |
-|-----   |------------           |  -----    |
-|A       |1-126                  |Unicast (large network |
-|B       |128-191                |Unicast (medium sized networks  |
-|C       |192-223                |Unicast (small networks)  |
+|  Class |  First octet values   |  Purpose  |  Network and host octets |
+|-----   |------------           |  -----    |---------|
+|A       |1-126                  |Unicast (large network |  1 network and 3 host octets   |
+|B       |128-191                |Unicast (medium sized networks  |  2 network and 2 host octets   |
+|C       |192-223                |Unicast (small networks)  |  3 network octets and 1 host octets  |
 |D       |224-239                |Multicast  |
 |E       |240-255                |Reserved (formerly experimental)   |
 
@@ -1087,7 +1087,7 @@ STOPPED ON PAGE 331
 - First (numerically lowest) usable address
 - Last (numerically highest) usable address 
 - Network braodcast adddress, used as a destination address in a packet and the routers would forward a copy of that one packet to all hosts in the classful network. 
-- The steops to find network number and network broadcast address etc
+- The steps to find network number and network broadcast address etc
 1. Determin the class A, B or C based on the first octet 
 2. Mentally divide the netowkr and host octets based on the class
 3. To find the network number, change the IP address's host octets to 0
@@ -1126,4 +1126,21 @@ to find the last address, subtract 1 from the fourth octet of the network broadc
 - Class A: 0 to 127 are reserved, and 127.0.0.1 is loopback address
 - Class B: Range from 128.0.0.0 to 191.255.0.0 
 
-STOPPED ON PAGE 334
+Examples: 
+
+|  IP Add   |  Class |  Net Octets  |  Host Octets |  Net ID  |  Broadcast address  |
+|-------|------|-----|-----|-----|-----|
+|  1.1.1.1  |  A     | 1.           |  1.1.1.1     |  1.0.0.0  |  1.255.255.255  |
+|  128.1.6.5|  B     |128.1         |  6.5         | 128.1.0.0 | 128.1.255.255
+|  200.1.2.3|  C     |  3           |  1           |  200.1.2.0|  200.1.2.255 |
+|  192.192.1.1 |  C  |  3           |  1           |  129.129.1.0 | 129.129.1.129   |
+|  126.5.4.3   |  A  |  1           | 3            |  126.0.0.0   |  126.255.255.255|
+|  200.1.9.8   | C   |  3           |  1           |  200.1.9.0   |  200.1.9.255    |
+|  192.0.0.1   |  C  |  3           |  1           |  192.0.0.0   |192.0.0.255      |
+|  191.255.1.47|  B  | 2            |2             |191.255.0.0   |191.255.255.255  |
+|  223.223.0.1 |  C  |  3           |  1           |223.223.0.0   |223.223.255.255  |
+
+STOPPED on topo of page 335
+
+
+
