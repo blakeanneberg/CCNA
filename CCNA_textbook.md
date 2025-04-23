@@ -1028,6 +1028,7 @@ Example: N=24, H=8
 ### Class A, B or C
 - Identify the class and other facts can be derived
 
+
 |  Class |  First octet values   |  Purpose  |  Network and host octets |
 |-----   |------------           |  -----    |---------|
 |A       |1-126                  |Unicast (large network |  1 network and 3 host octets   |
@@ -1126,7 +1127,7 @@ to find the last address, subtract 1 from the fourth octet of the network broadc
 - Class A: 0 to 127 are reserved, and 127.0.0.1 is loopback address
 - Class B: Range from 128.0.0.0 to 191.255.0.0 
 
-Examples: 
+Examples 1: 
 
 |  IP Add   |  Class |  Net Octets  |  Host Octets |  Net ID  |  Broadcast address  |
 |-------|------|-----|-----|-----|-----|
@@ -1140,7 +1141,39 @@ Examples:
 |  191.255.1.47|  B  | 2            |2             |191.255.0.0   |191.255.255.255  |
 |  223.223.0.1 |  C  |  3           |  1           |223.223.0.0   |223.223.255.255  |
 
-STOPPED on topo of page 335
+Example 2:
+
+|  Class |  First Octet Values   |  Purpose  |
+|-----|--------|--------------------------------|
+|  A  |  1-126 |  Unicast large network network |
+|  B  |  128-191  |  Unicast Medium sized networks |
+|  C  |  192-223  |  Unicast Small Networks  |
+|  D  |  224-239  |  Multicast   |
+|  E  |  240-255  |  Reserved formerly experiemntal   |
+
+Example 3:
+
+|                 |  Class A  |  Class B  |  Class C  |
+|-----------------|-----------|-----------|-----------|
+|First Octet Range| 1-126     |  128-191  |  192-223  |
+|Valid Network Nums| 1.0.0.0-126.0.0.0  |128.0.0.0-191.255.0.0|192.0.0.0-223.255.255.255.0|
+|Total Networks| 2^7-2=126|2^14=16,284|2^21=2097152|
+|Hosts per network| 2^24-2|2^16-2      |2^8-2|
+|Octets bits in network part|1(8)|2(16) |2(24)|
+|Octets bits in host part| 3(24)|   2(16)|1(8)|
+|default mask| 255.0.0.0|225.255.0.0|255.255.255.0|
+
+
+## Analyzing Subnet Masks
+- subnets tell alot about the intent of the subnet design
+- Prefix: has network and subnet parts. 
+- Host: defining the size of the subnet number of hosts in the subnet
+- Subnet part: defines the number of subnets that could exist inside on e classfull ip network, assuming 1 mask in the network
+- Binary
+- Dotted-decimal notation DDN
+- Prefix classlsess interdomain routing CIDER
+
+# 
 
 
 
