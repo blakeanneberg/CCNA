@@ -1173,7 +1173,35 @@ Example 3:
 - Dotted-decimal notation DDN
 - Prefix classlsess interdomain routing CIDER
 
-# 
+### Prefix mask
+- example /18 and binary mask 11111111 11111111 11000000 00000000 
+- example /28 and binary mask 11111111 11111111 11111111 11110000
+- takes advantage of the rule that the subnet mask starts with some number of 1s and then the rest of the digits are 0s
+- Prefix format lists a slash / followed by the number of binary 1s in the binary mask CIDR mask
+- converting between binary and prefix mask, count number of binary 1s in the binary mask and write total in decimal 
+
+### Converting between binary and DDN masks 
+- for each octet, perform a decimal to binary conversion and memorize the 9 possible values in one octet of a subnet mask
+
+| Binary Mask Octet  |  Decimal equivalent   | number of binary 1s   |
+|------------------- |---------------------- |-------------------    |
+|00000000            |0                      |0                      |
+|10000000            |128                    |1                      |
+|11000000            |192                    |2                      |
+|11100000            |224                    |3                      |
+|11110000            |240                    |4                      |
+|11111000            |248                    |5                      |
+|11111100            |252                    |6                      |
+|11111110            |254                    |7                      |
+|11111111            |255                    |8                      |
+- Binary to decimal: organize bits into four sets of eight. For each octet, find the binary value in the table and write down the corresponding decimal value
+- Decimal to binary: For each octet, find the decimal value in the table and write down the corrsponding 8 bit value
+
+
+STOPPED at 344 !!!!
+
+
+
 
 
 
